@@ -14,7 +14,7 @@ jobs:
           node-version: '18.x'
       - uses: actions/cache@v3
         with:
-          key: ${{ runner.os }}-build-dependencies-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-build-dependencies-${{ hashFiles('thequote/package-lock.json') }}
           path: |
             ./node_modules
       - run: npm install
@@ -30,7 +30,7 @@ jobs:
           node-version: '18.x'
       - uses: actions/cache@v3
         with:
-          key: ${{ runner.os }}-build-dependencies-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-build-dependencies-${{ hashFiles('thequote/package-lock.json') }}
           path: |
             ./node_modules
       - run: npm run lint
