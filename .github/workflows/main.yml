@@ -16,8 +16,9 @@ jobs:
         with:
           key: ${{ runner.os }}-build-dependencies-${{ hashFiles('thequote/package-lock.json') }}
           path: |
-            ./node_modules
+            thequote/node_modules
       - run: npm install
+        working-directory: thequote
 
   check-linter:
     runs-on: ubuntu-latest
@@ -32,5 +33,6 @@ jobs:
         with:
           key: ${{ runner.os }}-build-dependencies-${{ hashFiles('thequote/package-lock.json') }}
           path: |
-            ./node_modules
+            thequote/node_modules
       - run: npm run lint
+        working-directory: thequote
