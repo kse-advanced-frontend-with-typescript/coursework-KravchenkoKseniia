@@ -22,7 +22,8 @@ jobs:
 
   check-linter:
     runs-on: ubuntu-latest
-
+    needs: install-dependencies
+    
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js
@@ -35,4 +36,22 @@ jobs:
           path: |
             thequote/node_modules
       - run: npm run lint
+        working-directory: thequote
+
+  build:
+    runs-on: ubuntu-latest
+    needs: check-linter
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+            node-version: '18.x'
+      - uses: actions/cache@v3
+        with:
+          key: ${{ runner.os }}-build-dependencies-${{ hashFiles('thequote/package-lock.json') }}
+          path: |
+            ./node_modules
+      - run: npm run build
         working-directory: thequote
