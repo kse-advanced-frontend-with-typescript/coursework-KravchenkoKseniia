@@ -1,0 +1,14 @@
+﻿.display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ddd7d0;
+    padding: 150px;
+}
+
+.phone {
+    width: 393px;
+    height: 852px;
+    border-radius: 42px;
+    background-color: white;
+}

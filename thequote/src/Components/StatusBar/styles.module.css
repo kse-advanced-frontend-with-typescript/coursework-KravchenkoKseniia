@@ -1,0 +1,67 @@
+﻿@font-face {
+    font-family: "San Francisco";
+    font-weight: 400;
+    src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.woff");
+}
+
+.statusBar {
+    display: flex;
+    align-items: center;
+    margin-left: 27px;
+    margin-top: 12px;
+}
+
+.leftSide{
+    order: 1;
+    margin-right: 55px;
+}
+
+.rightSide{
+    order: 3;
+    display: flex;
+    align-items: center;
+}
+
+
+.island{
+    order: 2;
+    margin-right: 31px;
+}
+
+.lens{
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    bottom: 13px;
+    left: 99px;
+    z-index: 1;
+}
+
+.islandImg{
+    position: relative;
+}
+
+.time{
+    display: inline;
+    font-family: "San Francisco", sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 22px;
+    letter-spacing: -0.41px;
+    padding: 3px 10px;
+}
+
+.wifi{
+    margin-right: 7px;
+}
+
+.signal{
+    margin-right: 8px;
+}
+
+.battery{
+
+}
+
+
+/*SF Pro Text*/
