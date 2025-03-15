@@ -8,7 +8,7 @@ type BigQuoteProps = {
 export const BigQuote: React.FC<BigQuoteProps> = ({quote = 'Some  quote', author = 'author'}) => {
     return (
         <div className={styles.container}>
-            <p className={styles.quote}>"{quote}"</p>
+            <p className={styles.quote}>&quot;{quote}&quot;</p>
             <p className={styles.author}>- {author}</p>
         </div>
     );

@@ -1,8 +1,9 @@
 ﻿import React from 'react';
 import styles from './styles.module.css';
-import {StatusBar} from "../StatusBar/StatusBar";
-import {Header} from "../Header/Header";
-import {BigQuote} from "../BigQuote/BigQuote";
+import {StatusBar} from '../StatusBar/StatusBar';
+import {Header} from '../Header/Header';
+import {BigQuote} from '../BigQuote/BigQuote';
+import {SaveButton} from "../SaveButton/SaveButton";
 
 export const Display = () => {
     return (
@@ -11,6 +12,7 @@ export const Display = () => {
                 <StatusBar />
                 <Header />
                 <BigQuote />
+                <SaveButton />
             </div>
         </div>
     );
