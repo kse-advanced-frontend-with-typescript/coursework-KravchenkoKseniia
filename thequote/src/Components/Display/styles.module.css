@@ -13,10 +13,6 @@
     background-color: white;
     padding: 20px;
     box-sizing: border-box;
-
-    display: flex;            /* робимо флекс */
-    flex-direction: column;   /* елементи йдуть згори донизу */
-    justify-content: space-between;
 }
 
 .content{
