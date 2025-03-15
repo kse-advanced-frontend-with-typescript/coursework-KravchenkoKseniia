@@ -4,15 +4,21 @@ import {StatusBar} from '../StatusBar/StatusBar';
 import {Header} from '../Header/Header';
 import {BigQuote} from '../BigQuote/BigQuote';
 import {SaveButton} from "../SaveButton/SaveButton";
+import {Toolbar} from "../Toolbar/Toolbar";
 
 export const Display = () => {
     return (
         <div className={styles.display}>
             <div className={styles.phone}>
                 <StatusBar />
-                <Header />
-                <BigQuote />
-                <SaveButton />
+
+                <div className={styles.content}>
+                    <Header />
+                    <BigQuote />
+                    <SaveButton />
+                </div>
+
+                <Toolbar />
             </div>
         </div>
     );

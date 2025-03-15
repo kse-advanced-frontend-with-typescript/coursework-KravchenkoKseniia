@@ -1,7 +1,7 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap');
 
 .container {
-    margin: 86px auto;
+    margin: 86px auto 44px;
     justify-content: center;
     align-items: center;
     display: flex;
