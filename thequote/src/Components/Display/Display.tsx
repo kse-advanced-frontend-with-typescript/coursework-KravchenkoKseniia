@@ -2,6 +2,7 @@
 import styles from './styles.module.css';
 import {StatusBar} from "../StatusBar/StatusBar";
 import {Header} from "../Header/Header";
+import {BigQuote} from "../BigQuote/BigQuote";
 
 export const Display = () => {
     return (
@@ -9,6 +10,7 @@ export const Display = () => {
             <div className={styles.phone}>
                 <StatusBar />
                 <Header />
+                <BigQuote />
             </div>
         </div>
     );

@@ -7,8 +7,7 @@
 .statusBar {
     display: flex;
     align-items: center;
-    margin-left: 27px;
-    margin-top: 12px;
+    padding-left: 10px;
 }
 
 .leftSide{
