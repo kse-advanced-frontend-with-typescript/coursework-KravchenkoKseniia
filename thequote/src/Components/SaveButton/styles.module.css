@@ -12,7 +12,7 @@
     border: none;
     color: white;
     padding: 14px 0;
-    width: 315px;
+    /*width: 315px;*/
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -23,4 +23,5 @@
     line-height: 22px;
     letter-spacing: -0.41px;
     font-weight: 500;
+    width: 100%;
 }
