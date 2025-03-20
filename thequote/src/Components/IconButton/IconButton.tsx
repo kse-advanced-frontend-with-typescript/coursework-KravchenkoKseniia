@@ -13,7 +13,7 @@ import leadershipSvg from './img/1st-Place-Medal_1f9472.svg';
 import happinessSvg from './img/Slightly Smiling Face.svg';
 import imaginationSvg from './img/Rainbow.svg';
 import friendshipSvg from './img/Busts In Silhouette.svg';
-import classNames from "classnames";
+import classNames from 'classnames';
 
 export type IconType = 'motivation'
     | 'life'
@@ -41,7 +41,7 @@ const IconDictionary: Record<IconType, {icon: string; alt: string}> = {
     happiness: {icon: happinessSvg, alt: 'Happiness'},
     imagination: {icon: imaginationSvg, alt: 'Imagination'},
     friendship: {icon: friendshipSvg, alt: 'Friendship'},
-}
+};
 
 type IconButtonProps = {
     iconType: IconType;
@@ -51,7 +51,7 @@ type IconButtonProps = {
 
 export const IconButton: React.FC<IconButtonProps> = ({
                                                           iconType = 'motivation',
-                                                          onClick = () => console.log("Button clicked"),
+                                                          onClick = () => console.log('Button clicked'),
                                                           defaultActive = false
 }) => {
 
@@ -61,7 +61,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
         setActive(!isActive);
         onClick();
         console.log(`Switched to ${IconDictionary[iconType].alt}`);
-    }
+    };
 
     const iconData = IconDictionary[iconType];
 
@@ -81,4 +81,4 @@ export const IconButton: React.FC<IconButtonProps> = ({
             <p  className={styles.text}>{alt}</p>
         </button>
     );
-}
+};

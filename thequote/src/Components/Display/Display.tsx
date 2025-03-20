@@ -2,8 +2,8 @@
 import styles from './styles.module.css';
 import {Header} from '../Header/Header';
 import {BigQuote} from '../BigQuote/BigQuote';
-import {SaveButton} from "../SaveButton/SaveButton";
-import {Toolbar} from "../Toolbar/Toolbar";
+import {SaveButton} from '../SaveButton/SaveButton';
+import {Toolbar} from '../Toolbar/Toolbar';
 
 export const Display = () => {
     return (

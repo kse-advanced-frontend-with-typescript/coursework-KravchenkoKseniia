@@ -16,7 +16,7 @@ const tabs = [
     {icon: redHeartSvg, alt: 'Red Heart', page: 'Saved quotes'},
     {icon: peopleHuggingSvg, alt: 'People Hugging', page: 'Shared with'},
     {icon: backhandIndexPointingRightSvg, alt: 'Backhand Index Pointing Right', page: 'Today\'s quote'}
-]
+];
 
 export const Toolbar: React.FC<ToolbarProps> = ({initialTab = 0}) => {
     const [activeTabIndex, setActiveTabIndex] = useState(initialTab);
@@ -24,7 +24,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({initialTab = 0}) => {
     const clickHandler = (index: number) => {
         setActiveTabIndex(index);
         console.log(`Switched to ${tabs[index].alt}`);
-    }
+    };
 
     return (
         <div className={styles.toolbar}>
@@ -38,6 +38,6 @@ export const Toolbar: React.FC<ToolbarProps> = ({initialTab = 0}) => {
                 </button>
             ))}
         </div>
-    )
+    );
 
 };
