@@ -8,7 +8,7 @@ const meta: Meta<typeof IconButton> = {
     tags: ['autodocs'],
     args: {
         iconType: 'motivation',
-        onClick: () => alert("Hello"),
+        onClick: () => alert('Hello'),
         isActive: false
     }
 };
