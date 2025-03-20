@@ -1,4 +1,4 @@
-﻿import React, {useState} from 'react';
+﻿import React, {useEffect, useState} from 'react';
 import styles from './styles.module.css';
 
 import motivationSvg from './img/High Voltage.svg';
@@ -46,21 +46,18 @@ const IconDictionary: Record<IconType, {icon: string; alt: string}> = {
 type IconButtonProps = {
     iconType: IconType;
     onClick: () => void;
-    defaultActive?: boolean;
+    isActive?: boolean;
 }
 
 export const IconButton: React.FC<IconButtonProps> = ({
                                                           iconType = 'motivation',
-                                                          onClick = () => console.log('Button clicked'),
-                                                          defaultActive = false
+                                                          onClick,
+                                                          isActive = false
 }) => {
 
-    const [isActive, setActive] = useState(defaultActive);
 
     const handleClick = () => {
-        setActive(!isActive);
         onClick();
-        console.log(`Switched to ${IconDictionary[iconType].alt}`);
     };
 
     const iconData = IconDictionary[iconType];
@@ -75,7 +72,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
     return (
         <button
             className={classNames(styles.iconButton, {[styles.active]: isActive})}
-            onClick={() => handleClick()}
+            onClick={handleClick}
         >
             <img src={icon} alt={alt} className={styles.img}/>
             <p  className={styles.text}>{alt}</p>
