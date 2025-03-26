@@ -1,4 +1,4 @@
-﻿import { QuoteItem, GetQuote } from '../quote';
+﻿import { QuoteItem, GetQuote } from '../index';
 describe('Qet Quote', () => {
 
 

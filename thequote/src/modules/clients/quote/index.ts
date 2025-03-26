@@ -1,6 +1,5 @@
 ﻿import {Static, Type} from '@sinclair/typebox';
-import {TypeCompiler} from '@sinclair/typebox/compiler';
-import {schemaErrorToError} from '../schemaErrorToError';
+import {convertToType} from '../convertToType';
 
 const QuoteItemSchema = Type.Object({
     _id: Type.String(),
@@ -29,12 +28,5 @@ export const GetQuote = async (categories: Array<string>, fetchAPI: typeof fetch
         throw new Error(`HTTP error! status: ${response.statusText}`);
     }
 
-    const Compiler = TypeCompiler.Compile(QuoteResponseSchema);
-    const isValid = Compiler.Check(data);
-
-    if(isValid) {
-        return data;
-    }
-
-    throw schemaErrorToError(Compiler.Errors(data).First());
+    return convertToType(data, QuoteResponseSchema);
 };
