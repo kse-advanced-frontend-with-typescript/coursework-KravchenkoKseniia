@@ -22,7 +22,7 @@ export type IconType = 'motivation'
     | 'technology'
     | 'creativity'
     | 'change'
-    | 'inspiration'
+    | 'inspirational'
     | 'leadership'
     | 'happiness'
     | 'imagination'
@@ -36,7 +36,7 @@ const IconDictionary: Record<IconType, {icon: string; alt: string}> = {
     technology: {icon: technologySvg, alt: 'Technology'},
     creativity: {icon: creativitySvg, alt: 'Creativity'},
     change: {icon: changeSvg, alt: 'Change'},
-    inspiration: {icon: inspirationSvg, alt: 'Inspiration'},
+    inspirational: {icon: inspirationSvg, alt: 'Inspiration'},
     leadership: {icon: leadershipSvg, alt: 'Leadership'},
     happiness: {icon: happinessSvg, alt: 'Happiness'},
     imagination: {icon: imaginationSvg, alt: 'Imagination'},
