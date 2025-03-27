@@ -1,6 +1,6 @@
-﻿import { QuoteItem, GetQuote } from '../index';
+﻿import { QuoteItem, initQuoteAPI } from '../index';
 describe('Qet Quote', () => {
-
+  const API_KEY = 'some_key';
 
   describe('when response is valid', () => {
     const body : QuoteItem = [
@@ -24,11 +24,10 @@ describe('Qet Quote', () => {
       });
     });
 
-    const api = GetQuote(['inspirational', 'life', 'love'], mocked_fetch);
+    const api = initQuoteAPI(API_KEY, mocked_fetch);
 
     it('should return a quote', async () => {
-
-      const res = await api;
+      const res = await api.GetQuote(['inspirational', 'life', 'love']);
       expect(res).toEqual(body);
     });
   });
@@ -56,10 +55,10 @@ describe('Qet Quote', () => {
       });
     });
 
-    const api = GetQuote(['inspirational', 'life', 'love'], mocked_fetch);
+    const api = initQuoteAPI(API_KEY, mocked_fetch);
 
     it('should throw an error', async () => {
-        await expect(api).rejects.toThrow('Data is not valid: /0/content (Expected string)');
+        await expect(api.GetQuote(['inspirational', 'life', 'love'])).rejects.toThrow('Data is not valid: /0/content (Expected string)');
     });
   });
 

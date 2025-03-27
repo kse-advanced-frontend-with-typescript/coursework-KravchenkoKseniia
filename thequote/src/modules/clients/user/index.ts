@@ -11,7 +11,7 @@ const UserSchema = Type.Array(Type.Object({
 export type User = Static<typeof UserSchema>
 
 export const initUserAPI = (api_key: string, fetchAPI: typeof fetch) => {
-    const GetUserToken = async (login: string, password: string): Promise<string> => {
+    const GetUserToken = async (login: string, password: string): Promise<User> => {
         const headers = new Headers();
         headers.set('x-apikey', api_key);
         headers.set('Content-Type', 'application/json');
@@ -38,7 +38,12 @@ export const initUserAPI = (api_key: string, fetchAPI: typeof fetch) => {
         const user = convertToType(data, UserSchema);
 
         if(user.length > 0) {
-            return user[0].token;
+            return [{
+                _id: user[0]._id,
+                username: user[0].username,
+                password: user[0].password,
+                token: user[0].token
+            }];
         }
 
         throw Error('User does not exist');
@@ -46,6 +51,6 @@ export const initUserAPI = (api_key: string, fetchAPI: typeof fetch) => {
 
 
     return {
-        getUserToken: GetUserToken
+        GetUserToken,
     };
 };

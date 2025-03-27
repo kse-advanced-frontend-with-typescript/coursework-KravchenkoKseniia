@@ -20,8 +20,13 @@ describe('User API: Get User Token', () => {
         const api = initUserAPI(api_key, mocked_fetch);
 
         it('should return a token', async () => {
-            const res = await api.getUserToken('some_username', 'some_password');
-            expect(res).toEqual('some_token');
+            const res = await api.GetUserToken('some_username', 'some_password');
+            expect(res).toEqual([{
+                _id: 'some_id',
+                username: 'some_username',
+                password: 'some_password',
+                token: 'some_token',
+            }]);
         });
     });
 
@@ -37,7 +42,7 @@ describe('User API: Get User Token', () => {
         const api = initUserAPI(api_key, mocked_fetch);
 
         it('should throw an error', async () => {
-            await expect(api.getUserToken('some_username', 'some_password')).rejects.toThrow('User does not exist');
+            await expect(api.GetUserToken('some_username', 'some_password')).rejects.toThrow('User does not exist');
         });
     });
 
