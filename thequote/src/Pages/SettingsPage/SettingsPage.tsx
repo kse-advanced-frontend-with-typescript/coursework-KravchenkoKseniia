@@ -1,7 +1,7 @@
 import {Header} from "../../Components/Header/Header";
 import {IconButton, IconType} from "../../Components/IconButton/IconButton";
 import {Button} from "../../Components/Button/Button";
-import {Toolbar} from "../../Components/Toolbar/Toolbar";
+import {Toolbar, ToolbarType} from "../../Components/Toolbar/Toolbar";
 import {AppContext} from "../../context";
 import React, {useContext, useState} from "react";
 import styles from './styles.module.css';
@@ -59,6 +59,30 @@ export const SettingsPage: React.FC = () => {
         navigate('/login');
     };
 
+    const handleToolbarClick = (tab: ToolbarType, index: number, isActive: boolean) => {
+        let route = '';
+        switch (tab.page) {
+            case 'Settings':
+                route = '/settings';
+                break;
+            case 'Saved quotes':
+                route = '/save';
+                break;
+            case 'Shared with':
+                route = '/share';
+                break;
+            case "Today's quote":
+                route = '/';
+                break;
+            default:
+                route = '/';
+        }
+
+        if (route !== window.location.pathname) {
+            navigate(route);
+        }
+    }
+
 
     return (
         <>
@@ -77,7 +101,7 @@ export const SettingsPage: React.FC = () => {
                 </div>
                 <Button onClick={handleSave} title={'Save'}/>
                 <Button title={'Logout'} onClick={cleanUser}/>
-                <Toolbar initialTab={0}/>
+                <Toolbar initialTab={0} onTabClick={handleToolbarClick}/>
             </div>
         </>
     )

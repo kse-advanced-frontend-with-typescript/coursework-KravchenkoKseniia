@@ -46,11 +46,10 @@ export const App: React.FC = () => {
             }}>
                 <div className={styles.app}>
                     <div className={styles.content}>
-                        {/*<Link to='/login'>pypypy</Link>*/}
                         <Routes>
                             <Route index element={<QuotePage/>}/>
                             <Route path="login" element={<LoginPage/>}/>
-                            {/*<Route path="settings" element={<SettingsPage/>}/>*/}
+                            <Route path="settings" element={<SettingsPage/>}/>
                             {/*<Route path="share" element={<SharePage/>}/>*/}
                             {/*<Route path="save" element={<SavedQuotesPage/>}/>*/}
                         </Routes>
