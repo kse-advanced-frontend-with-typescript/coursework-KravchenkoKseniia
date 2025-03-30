@@ -15,15 +15,12 @@
 .active{
     background-color: #D7EAFD;
     border: 2px solid #86BEF3;
-    box-shadow: none;
+    box-shadow: 0 0 10px 0 rgba(150, 196, 239, 0.5);
+    /*box-shadow: none;*/
 }
 
 .text{
     font-family: "Kumbh Sans", sans-serif;
     font-size: 13px;
     margin: 5px auto 0;
-}
-
-.img{
-
 }

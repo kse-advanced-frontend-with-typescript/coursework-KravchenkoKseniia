@@ -2,7 +2,11 @@
 import styles from './styles.module.css';
 
 
-export const SaveButton = () => {
+interface SaveButtonProps {
+    onClick?: () => void
+}
+
+export const SaveButton = ({onClick}: SaveButtonProps) => {
     return (
         <div className={styles.container}>
             <button className={styles.btn}>SAVE</button>
