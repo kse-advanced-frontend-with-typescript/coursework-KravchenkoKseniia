@@ -1,14 +1,14 @@
-﻿    import React, {useEffect, useState} from 'react';
+﻿    import React, {useState} from 'react';
     import styles from './main.module.css';
-    import {Link, Route, Router, Routes} from 'react-router';
-    import {AppContext} from "./context";
-    import {initUserAPI, User} from "./modules/clients/user";
-    import {QuotePage} from "./Pages/QuotePage/QuotePage";
+    import {Route, Routes} from 'react-router';
+    import {AppContext} from './context';
+    import {initUserAPI, User} from './modules/clients/user';
+    import {QuotePage} from './Pages/QuotePage/QuotePage';
     // import {SharePage} from "./Pages/SharePage/SharePage";
-    import {LoginPage} from "./Pages/LoginPage/LoginPage";
-    import {SettingsPage} from "./Pages/SettingsPage/SettingsPage";
+    import {LoginPage} from './Pages/LoginPage/LoginPage';
+    import {SettingsPage} from './Pages/SettingsPage/SettingsPage';
     import {initQuoteAPI} from './modules/clients/quote';
-    import {SavedQuotesPage} from "./Pages/SavedQuotesPage/SavedQuotesPage";
+    import {SavedQuotesPage} from './Pages/SavedQuotesPage/SavedQuotesPage';
 
 
     export const App: React.FC = () => {

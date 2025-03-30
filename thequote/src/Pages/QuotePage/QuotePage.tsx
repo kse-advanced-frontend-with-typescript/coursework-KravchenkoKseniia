@@ -1,11 +1,11 @@
-import {Toolbar, ToolbarType} from "../../Components/Toolbar/Toolbar";
-import {BigQuote} from "../../Components/BigQuote/BigQuote";
-import {Header} from "../../Components/Header/Header";
+import {Toolbar, ToolbarType} from '../../Components/Toolbar/Toolbar';
+import {BigQuote} from '../../Components/BigQuote/BigQuote';
+import {Header} from '../../Components/Header/Header';
 import {AppContext} from '../../context';
 import {useLocation, useNavigate} from 'react-router';
-import React from "react";
-import {NotificationElement} from "../../Components/NotificationElement/NotificationElement";
-import {Button} from "../../Components/Button/Button";
+import React from 'react';
+import {NotificationElement} from '../../Components/NotificationElement/NotificationElement';
+import {Button} from '../../Components/Button/Button';
 
 export const QuotePage: React.FC = () => {
     const navigate = useNavigate();
@@ -15,7 +15,7 @@ export const QuotePage: React.FC = () => {
     const [isProcessing, setIsProcessing] = React.useState<boolean>(true);
     const [error, setError] = React.useState<string>();
 
-    const [saveNotification, setSaveNotification] = React.useState<{level: "error" | "success" | "info" | "warning", message: string} | null>(null);
+    const [saveNotification, setSaveNotification] = React.useState<{level: 'error' | 'success' | 'info' | 'warning', message: string} | null>(null);
     const [savedQuotes, setSavedQuotes] = React.useState<{content: string, author: string}[]>([]);
 
     const fetchQuote = async () => {
@@ -32,7 +32,7 @@ export const QuotePage: React.FC = () => {
             context.categories : [];
 
         try {
-            const quoteData = await context.quoteAPI.GetQuote(categories)
+            const quoteData = await context.quoteAPI.GetQuote(categories);
 
             if (quoteData && quoteData.length > 0) {
                 const {content, author} = quoteData[0];
@@ -59,12 +59,12 @@ export const QuotePage: React.FC = () => {
 
         if (!context.user) {
             setSaveNotification({level: 'error', message: 'User not found'});
-            return
+            return;
         }
 
         if (!quote){
             setSaveNotification({level: 'error', message: 'No quote to save'});
-            return
+            return;
         }
 
         if (savedQuotes.some(savedQuote => savedQuote.content === quote.content && savedQuote.author === quote.author)) {
@@ -87,7 +87,7 @@ export const QuotePage: React.FC = () => {
             console.error('Error saving quote:', e);
             setSaveNotification({level: 'error', message: 'Error saving quote'});
         }
-    }
+    };
 
     React.useEffect(() => {
         if (saveNotification) {
@@ -108,7 +108,7 @@ export const QuotePage: React.FC = () => {
             case 'Shared with':
                 route = '/share';
                 break;
-            case "Today's quote":
+            case 'Today\'s quote':
                 route = '/';
                 break;
             default:
@@ -123,7 +123,7 @@ export const QuotePage: React.FC = () => {
         else {
             navigate(route);
         }
-    }
+    };
 
     React.useEffect(() => {
         fetchQuote();
@@ -133,7 +133,7 @@ export const QuotePage: React.FC = () => {
         <>
             <Header title='THE QUOTE'/>
             {isProcessing ? (
-                <NotificationElement level={"info"} message={'Loading...'}/>
+                <NotificationElement level={'info'} message={'Loading...'}/>
             ) : quote ? (
                 <BigQuote quote={quote.content} author={quote.author} />
             ) : (
@@ -144,4 +144,4 @@ export const QuotePage: React.FC = () => {
             <Toolbar initialTab={3} onTabClick={handleToolbarClick} />
         </>
     );
-}
+};

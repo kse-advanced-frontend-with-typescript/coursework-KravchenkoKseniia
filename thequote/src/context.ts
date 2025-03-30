@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import {initUserAPI, User} from './modules/clients/user';
-import {IconType} from "./Components/IconButton/IconButton";
-import {initQuoteAPI} from "./modules/clients/quote";
+import {IconType} from './Components/IconButton/IconButton';
+import {initQuoteAPI} from './modules/clients/quote';
 
 type AppContext = {
     readonly user?: User

@@ -1,6 +1,6 @@
 ﻿import React, {FormEventHandler} from 'react';
 import styles from './styles.module.css';
-import {Button} from "../Button/Button";
+import {Button} from '../Button/Button';
 
 type LoginFormProps = {
     onSub:  FormEventHandler<HTMLFormElement>;

@@ -1,11 +1,11 @@
-import {AppContext} from "../../context";
-import React, {useContext, useState} from "react";
+import {AppContext} from '../../context';
+import React from 'react';
 import styles from './styles.module.css';
-import {useLocation, useNavigate} from "react-router";
-import {Header} from "../../Components/Header/Header";
-import {Toolbar, ToolbarType} from "../../Components/Toolbar/Toolbar";
-import {NotificationElement} from "../../Components/NotificationElement/NotificationElement";
-import {SmallQuote} from "../../Components/SmallQuote/SmallQuote";
+import {useNavigate} from 'react-router';
+import {Header} from '../../Components/Header/Header';
+import {Toolbar, ToolbarType} from '../../Components/Toolbar/Toolbar';
+import {NotificationElement} from '../../Components/NotificationElement/NotificationElement';
+import {SmallQuote} from '../../Components/SmallQuote/SmallQuote';
 
 export const SavedQuotesPage: React.FC = () => {
     const navigate = useNavigate();
@@ -26,7 +26,7 @@ export const SavedQuotesPage: React.FC = () => {
             case 'Shared with':
                 route = '/share';
                 break;
-            case "Today's quote":
+            case 'Today\'s quote':
                 route = '/';
                 break;
             default:
@@ -36,7 +36,7 @@ export const SavedQuotesPage: React.FC = () => {
         if (route !== window.location.pathname) {
             navigate(route);
         }
-    }
+    };
 
     const fetchSavedQuotes = async () => {
         setError('');
@@ -49,7 +49,7 @@ export const SavedQuotesPage: React.FC = () => {
         }
 
         try {
-            const quoteData = await context.quoteAPI.GetSavedQuotes()
+            const quoteData = await context.quoteAPI.GetSavedQuotes();
 
             if (quoteData && quoteData.length > 0) {
                 const savedQuotes = quoteData.map(item => ({
@@ -68,7 +68,7 @@ export const SavedQuotesPage: React.FC = () => {
         } finally {
             setIsProcessing(false);
         }
-    }
+    };
 
     React.useEffect(() => {
         fetchSavedQuotes();
@@ -89,5 +89,5 @@ export const SavedQuotesPage: React.FC = () => {
                 <Toolbar initialTab={1} onTabClick={handleToolbarClick}/>
             </div>
         </>
-    )
-}
+    );
+};

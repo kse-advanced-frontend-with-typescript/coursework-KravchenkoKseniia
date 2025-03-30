@@ -1,12 +1,12 @@
-import {Header} from "../../Components/Header/Header";
-import {IconButton, IconType} from "../../Components/IconButton/IconButton";
-import {Button} from "../../Components/Button/Button";
-import {Toolbar, ToolbarType} from "../../Components/Toolbar/Toolbar";
-import {AppContext} from "../../context";
-import React, {useContext, useEffect, useState} from "react";
+import {Header} from '../../Components/Header/Header';
+import {IconButton, IconType} from '../../Components/IconButton/IconButton';
+import {Button} from '../../Components/Button/Button';
+import {Toolbar, ToolbarType} from '../../Components/Toolbar/Toolbar';
+import {AppContext} from '../../context';
+import React, {useContext, useEffect, useState} from 'react';
 import styles from './styles.module.css';
-import {User} from "../../modules/clients/user";
-import {useNavigate} from "react-router";
+import {User} from '../../modules/clients/user';
+import {useNavigate} from 'react-router';
 
 const iconTypes: IconType[] = [
     'motivation',
@@ -21,7 +21,7 @@ const iconTypes: IconType[] = [
     'happiness',
     'imagination',
     'friendship'
-]
+];
 
 export const SettingsPage: React.FC = () => {
     const navigate = useNavigate();
@@ -53,7 +53,7 @@ export const SettingsPage: React.FC = () => {
             console.log('User not found');
         }
 
-    }
+    };
 
     const cleanUser = () => {
         setContext({
@@ -77,7 +77,7 @@ export const SettingsPage: React.FC = () => {
             case 'Shared with':
                 route = '/share';
                 break;
-            case "Today's quote":
+            case 'Today\'s quote':
                 route = '/';
                 break;
             default:
@@ -87,7 +87,7 @@ export const SettingsPage: React.FC = () => {
         if (route !== window.location.pathname) {
             navigate(route);
         }
-    }
+    };
 
 
     return (
@@ -110,5 +110,5 @@ export const SettingsPage: React.FC = () => {
                 <Toolbar initialTab={0} onTabClick={handleToolbarClick}/>
             </div>
         </>
-    )
-}
+    );
+};
