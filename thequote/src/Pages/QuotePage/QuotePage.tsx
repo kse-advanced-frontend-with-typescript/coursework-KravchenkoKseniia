@@ -2,17 +2,21 @@ import {Toolbar, ToolbarType} from "../../Components/Toolbar/Toolbar";
 import {BigQuote} from "../../Components/BigQuote/BigQuote";
 import {Header} from "../../Components/Header/Header";
 import {AppContext} from '../../context';
-import {useNavigate} from 'react-router';
+import {useLocation, useNavigate} from 'react-router';
 import React from "react";
 import {NotificationElement} from "../../Components/NotificationElement/NotificationElement";
 import {Button} from "../../Components/Button/Button";
 
 export const QuotePage: React.FC = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const context = React.useContext(AppContext);
     const [quote, setQuote] = React.useState<{content: string, author: string} | null>(null);
     const [isProcessing, setIsProcessing] = React.useState<boolean>(true);
     const [error, setError] = React.useState<string>();
+
+    const [saveNotification, setSaveNotification] = React.useState<{level: "error" | "success" | "info" | "warning", message: string} | null>(null);
+    const [savedQuotes, setSavedQuotes] = React.useState<{content: string, author: string}[]>([]);
 
     const fetchQuote = async () => {
         setError('');
@@ -36,6 +40,7 @@ export const QuotePage: React.FC = () => {
             }
             else {
                 console.error('No quote found');
+                setError('No quote found');
             }
         } catch (error) {
             console.error('Error fetching quote:', error);
@@ -45,6 +50,51 @@ export const QuotePage: React.FC = () => {
         }
 
     };
+
+    const saveQuoteHandleClick = async () => {
+        if (!context.quoteAPI) {
+            setSaveNotification({level: 'error', message: 'Quote API is not available'});
+            return;
+        }
+
+        if (!context.user) {
+            setSaveNotification({level: 'error', message: 'User not found'});
+            return
+        }
+
+        if (!quote){
+            setSaveNotification({level: 'error', message: 'No quote to save'});
+            return
+        }
+
+        if (savedQuotes.some(savedQuote => savedQuote.content === quote.content && savedQuote.author === quote.author)) {
+            setSaveNotification({level: 'info', message: 'Quote already saved'});
+            return;
+        }
+
+        try {
+            const savedQuote = await context.quoteAPI.PostSavedQuote(
+                context.user[0].username,
+                quote.content,
+                quote.author
+            );
+
+            console.log(savedQuote);
+            setSavedQuotes([...savedQuotes, quote]);
+            setSaveNotification({level: 'success', message: 'Quote saved successfully'});
+        }
+        catch (e) {
+            console.error('Error saving quote:', e);
+            setSaveNotification({level: 'error', message: 'Error saving quote'});
+        }
+    }
+
+    React.useEffect(() => {
+        if (saveNotification) {
+            const timer = setTimeout(() => setSaveNotification(null), 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [saveNotification]);
 
     const handleToolbarClick = (tab: ToolbarType, index: number, isActive: boolean) => {
         let route = '';
@@ -87,9 +137,10 @@ export const QuotePage: React.FC = () => {
             ) : quote ? (
                 <BigQuote quote={quote.content} author={quote.author} />
             ) : (
-                <NotificationElement level={'error'} message={'No quote found'} />
+                <NotificationElement level={'error'} message={String(error)} />
             )}
-            <Button title={'SAVE'} onClick={() => navigate('/save')} />
+            <Button title={'SAVE'} onClick={saveQuoteHandleClick} />
+            {saveNotification && <NotificationElement level={saveNotification.level} message={saveNotification.message} />}
             <Toolbar initialTab={3} onTabClick={handleToolbarClick} />
         </>
     );

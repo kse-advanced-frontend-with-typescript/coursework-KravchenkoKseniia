@@ -8,8 +8,8 @@ import {NotificationElement} from '../../Components/NotificationElement/Notifica
 
 export const LoginPage: React.FC = () => {
     const navigate = useNavigate();
-    const login = useRef<HTMLInputElement>(null);
-    const password = useRef<HTMLInputElement>(null);
+    const login = useRef<HTMLInputElement>(null!);
+    const password = useRef<HTMLInputElement>(null!);
     const context = useContext(AppContext);
     const [error, setError] = useState<string>();
     const [isProcessing, setIsProcessing] = useState<boolean>(false);
@@ -36,7 +36,7 @@ export const LoginPage: React.FC = () => {
     return (
         <>
             <Header/>
-            <LoginForm onSub={onLoginSubmit} isDis={isProcessing}/>
+            <LoginForm onSub={onLoginSubmit} isDis={isProcessing} loginRef={login} passwordRef={password} />
             {error && <NotificationElement message={error} level='error' />}
         </>
     );

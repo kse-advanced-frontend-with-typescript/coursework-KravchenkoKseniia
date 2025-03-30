@@ -46,6 +46,7 @@ export const initQuoteAPI = (api_key: string, fetchAPI: typeof fetch) => {
         const tags : string = categories.length > 0 ? `tags=${encodeURIComponent(categories.join('|'))}` : '';
         const url : string = `${endpoint}?${tags}`;
 
+        console.log(`Fetching ${url}`);
         const response = await fetchAPI(url);
         const data = await response.json();
 

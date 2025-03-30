@@ -27,3 +27,9 @@
     background-color: #ffffff;
     border-color: #424242;
 }
+
+.success {
+    color: #326e36;
+    background-color: #8ae192;
+    border-color: #326e36;
+}

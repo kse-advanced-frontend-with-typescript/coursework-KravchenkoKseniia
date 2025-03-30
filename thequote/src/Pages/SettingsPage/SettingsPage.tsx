@@ -39,7 +39,7 @@ export const SettingsPage: React.FC = () => {
 
     const handleSave =  () => {
         if (user) {
-            const updatedUser = {...user, categories: selectedIcons};
+            const updatedUser = [{...user[0], categories: selectedIcons}];
             setUser(updatedUser);
             console.log('Saved categories:', selectedIcons);
         }
