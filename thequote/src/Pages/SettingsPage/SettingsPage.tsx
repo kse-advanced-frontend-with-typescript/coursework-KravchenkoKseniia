@@ -1,11 +1,12 @@
 import {Header} from "../../Components/Header/Header";
 import {IconButton, IconType} from "../../Components/IconButton/IconButton";
-import {SaveButton} from "../../Components/SaveButton/SaveButton";
+import {Button} from "../../Components/Button/Button";
 import {Toolbar} from "../../Components/Toolbar/Toolbar";
 import {AppContext} from "../../context";
-import React from "react";
-import {useNavigate} from 'react-router';
+import React, {useContext, useState} from "react";
 import styles from './styles.module.css';
+import {User} from "../../modules/clients/user";
+import {useNavigate} from "react-router";
 
 const iconTypes: IconType[] = [
     'motivation',
@@ -23,9 +24,10 @@ const iconTypes: IconType[] = [
 ]
 
 export const SettingsPage: React.FC = () => {
-
-    const [selectedIcons, setSelectedIcons] = React.useState<IconType[]>([]);
-    const {setUser, user, userAPI} = React.useContext(AppContext);
+    const navigate = useNavigate();
+    const [context, setContext] = useState<{user?: User}>({ });
+    const [selectedIcons, setSelectedIcons] = useState<IconType[]>([]);
+    const {setUser, user, userAPI} = useContext(AppContext);
 
     const handleCLick = (iconType: IconType) => {
         if (selectedIcons.includes(iconType)) {
@@ -47,6 +49,17 @@ export const SettingsPage: React.FC = () => {
 
     }
 
+    const cleanUser = () => {
+        setContext({
+            ...context,
+            user: undefined
+        });
+
+        userAPI.CleanToken();
+        navigate('/login');
+    };
+
+
     return (
         <>
 
@@ -62,7 +75,8 @@ export const SettingsPage: React.FC = () => {
                         />
                     ))}
                 </div>
-                <SaveButton onClick={handleSave}/>
+                <Button onClick={handleSave} title={'Save'}/>
+                <Button title={'Logout'} onClick={cleanUser}/>
                 <Toolbar initialTab={0}/>
             </div>
         </>

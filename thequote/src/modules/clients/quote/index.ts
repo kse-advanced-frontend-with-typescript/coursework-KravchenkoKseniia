@@ -43,8 +43,8 @@ export type PostSavedQuoteItem = Static<typeof PostSavedQuoteItemSchema>;
 export const initQuoteAPI = (api_key: string, fetchAPI: typeof fetch) => {
     const GetQuote = async (categories: Array<string>) : Promise<QuoteItem> => {
         const endpoint : string = 'https://api.quotable.io/quotes/random';
-        const tags : string = categories.join('|');
-        const url : string = `${endpoint}?tags=${encodeURIComponent(tags)}`;
+        const tags : string = categories.length > 0 ? `tags=${encodeURIComponent(categories.join('|'))}` : '';
+        const url : string = `${endpoint}?${tags}`;
 
         const response = await fetchAPI(url);
         const data = await response.json();

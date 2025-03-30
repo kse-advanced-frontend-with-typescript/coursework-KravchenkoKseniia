@@ -11,6 +11,9 @@ const UserSchema = Type.Array(Type.Object({
 export type User = Static<typeof UserSchema>
 
 export const initUserAPI = (api_key: string, fetchAPI: typeof fetch) => {
+
+    const SESSION_KEY = 'quote-session';
+
     const GetUserToken = async (login: string, password: string): Promise<User> => {
         const headers = new Headers();
         headers.set('x-apikey', api_key);
@@ -49,8 +52,23 @@ export const initUserAPI = (api_key: string, fetchAPI: typeof fetch) => {
         throw Error('User does not exist');
     };
 
+    const RestoreToken = (): string | null => {
+        return window.localStorage.getItem(SESSION_KEY);
+    };
+
+    const CleanToken = (): void => {
+        window.localStorage.removeItem(SESSION_KEY);
+    };
+
+    const SaveToken = (token: string): void => {
+        window.localStorage.setItem(SESSION_KEY, token);
+    };
+
 
     return {
         GetUserToken,
+        RestoreToken,
+        CleanToken,
+        SaveToken
     };
 };

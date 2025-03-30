@@ -1,5 +1,6 @@
 ﻿import React, {FormEventHandler} from 'react';
 import styles from './styles.module.css';
+import {Button} from "../Button/Button";
 
 type LoginFormProps = {
     onSub:  FormEventHandler<HTMLFormElement>;
@@ -18,7 +19,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({onSub, isDis}) => {
                     <label className={styles.label}>Password</label>
                     <input type="password" className={styles.input} />
                 </div>
-                <button disabled={isDis} className={styles.btn}>Login</button>
+                <Button title={'Login'} isDisabled={isDis} />
             </form>
         </div>
     );
