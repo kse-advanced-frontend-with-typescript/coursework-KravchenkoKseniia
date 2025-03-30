@@ -9,7 +9,7 @@ interface SaveButtonProps {
 export const SaveButton = ({onClick}: SaveButtonProps) => {
     return (
         <div className={styles.container}>
-            <button className={styles.btn}>SAVE</button>
+            <button onClick={onClick} className={styles.btn}>SAVE</button>
         </div>
     );
 };
