@@ -53,7 +53,7 @@
                                 <Route path="login" element={<LoginPage/>}/>
                                 <Route path="settings" element={<SettingsPage/>}/>
                                 {/*<Route path="share" element={<SharePage/>}/>*/}
-                                {/*<Route path="save" element={<SavedQuotesPage/>}/>*/}
+                                <Route path="save" element={<SavedQuotesPage/>}/>
                             </Routes>
                         </div>
                     </div>
