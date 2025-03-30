@@ -3,7 +3,7 @@ import {IconButton, IconType} from "../../Components/IconButton/IconButton";
 import {Button} from "../../Components/Button/Button";
 import {Toolbar, ToolbarType} from "../../Components/Toolbar/Toolbar";
 import {AppContext} from "../../context";
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import styles from './styles.module.css';
 import {User} from "../../modules/clients/user";
 import {useNavigate} from "react-router";
@@ -28,6 +28,12 @@ export const SettingsPage: React.FC = () => {
     const [context, setContext] = useState<{user?: User}>({ });
     const [selectedIcons, setSelectedIcons] = useState<IconType[]>([]);
     const {setUser, user, userAPI} = useContext(AppContext);
+
+    useEffect(() => {
+        if (user && user.length > 0 && user[0].categories) {
+            setSelectedIcons(user[0].categories);
+        }
+    }, [user]);
 
     const handleCLick = (iconType: IconType) => {
         if (selectedIcons.includes(iconType)) {
