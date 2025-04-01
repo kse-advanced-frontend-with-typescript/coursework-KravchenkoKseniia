@@ -1,4 +1,4 @@
-﻿import React, {useContext, useRef, useState} from 'react';
+﻿import React, {useContext, useEffect, useRef, useState} from 'react';
 // import styles from './styles.module.css';
 import {AppContext} from '../../context';
 import {LoginForm} from '../../Components/LoginForm/LoginForm';
@@ -14,9 +14,11 @@ export const LoginPage: React.FC = () => {
     const [error, setError] = useState<string>();
     const [isProcessing, setIsProcessing] = useState<boolean>(false);
 
-    if (context.user?.[0]._id) {
-        navigate('/');
-    }
+    useEffect(() => {
+        if (context.user?.[0]._id) {
+            navigate('/settings');
+        }
+    }, [context.user, navigate]);
 
     const onLoginSubmit : React.FormEventHandler<HTMLFormElement> = async (e) => {
         setError('');
@@ -26,6 +28,7 @@ export const LoginPage: React.FC = () => {
         try {
             const user = await context.userAPI.GetUserToken(login.current!.value, password.current!.value);
             context.setUser(user);
+            navigate('/settings');
         } catch (e) {
             console.error(e);
             setError('Invalid credentials');
