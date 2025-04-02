@@ -102,7 +102,7 @@ export const initUserAPI = (api_key: string, fetchAPI: typeof fetch) => {
         }
 
         throw Error('User does not exist');
-    }
+    };
 
     const RestoreToken = (): string | null => {
         return window.localStorage.getItem(SESSION_KEY);

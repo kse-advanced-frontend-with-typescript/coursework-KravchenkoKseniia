@@ -72,8 +72,8 @@ export const SavedQuotesPage: React.FC = () => {
     };
 
     const onSaveQuoteClick = (quote: string, author: string) => {
-        navigate(`/share-or-delete/${encodeURIComponent(quote)}-${encodeURIComponent(author)}`)
-    }
+        navigate(`/share-or-delete/${encodeURIComponent(quote)}-${encodeURIComponent(author)}`);
+    };
 
     React.useEffect(() => {
         if (!context.user || context.user.length === 0) {

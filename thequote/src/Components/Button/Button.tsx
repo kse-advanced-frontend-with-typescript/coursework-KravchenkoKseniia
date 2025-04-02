@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import styles from './styles.module.css';
-import classNames from "classnames";
+import classNames from 'classnames';
 
 
 interface ButtonProps {

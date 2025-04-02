@@ -5,7 +5,7 @@ import {AppContext} from '../../context';
 import {useNavigate} from 'react-router';
 import React from 'react';
 import styles from './styles.module.css';
-import {SocialMedia} from "../../Components/SocialMedia/SocialMedia";
+import {SocialMedia} from '../../Components/SocialMedia/SocialMedia';
 
 export const SharePage: React.FC = () => {
     const navigate = useNavigate();

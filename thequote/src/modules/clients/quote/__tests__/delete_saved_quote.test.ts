@@ -14,7 +14,7 @@ describe('Delete Saved Quote', () => {
 
         const successResponse: DeleteSavedQuoteItem = {
             result: ['some_id']
-        }
+        };
 
         const mocked_fetch = jest.fn().mockImplementationOnce(() => {
             return new Response(JSON.stringify(body), {
@@ -24,7 +24,7 @@ describe('Delete Saved Quote', () => {
             return new Response(JSON.stringify(successResponse), {
                 status: 200,
             });
-        })
+        });
 
         const api = initQuoteAPI(API_KEY, mocked_fetch);
 
@@ -65,7 +65,7 @@ describe('Delete Saved Quote', () => {
 
         const notFoundResponse = {
             message: 'Not found'
-        }
+        };
 
         const mocked_fetch = jest.fn().mockImplementationOnce(() => {
             return new Response(JSON.stringify(body), {
@@ -75,14 +75,14 @@ describe('Delete Saved Quote', () => {
             return new Response(JSON.stringify(notFoundResponse), {
                 status: 200,
             });
-        })
+        });
 
         const api = initQuoteAPI(API_KEY, mocked_fetch);
 
         it('should throw an error "Quote not found"', async () => {
             await expect(api.DeleteSavedQuote('quote', 'author')).rejects.toThrow('Quote not found');
             expect(mocked_fetch).toHaveBeenCalledTimes(2);
-        })
-    })
+        });
+    });
 
 });

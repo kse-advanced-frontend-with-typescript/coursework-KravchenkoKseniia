@@ -136,7 +136,7 @@ export const initQuoteAPI = (api_key: string, fetchAPI: typeof fetch) => {
         }
 
         return convertToType(data, SavedQuoteResponseSchema);
-    }
+    };
 
     const DeleteSavedQuote = async (quote: string, author: string) : Promise<DeleteSavedQuoteItem> => {
         //{"result":["67e9779f59a5aa4a00001fe0"]} - if found
@@ -169,7 +169,7 @@ export const initQuoteAPI = (api_key: string, fetchAPI: typeof fetch) => {
         }
 
         return convertToType(data, DeleteSavedQuoteItemSchema);
-    }
+    };
 
     return {
         GetQuote,

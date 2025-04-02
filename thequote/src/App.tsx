@@ -4,7 +4,7 @@
     import {AppContext, Quote} from './context';
     import {initUserAPI, User} from './modules/clients/user';
     import {QuotePage} from './Pages/QuotePage/QuotePage';
-    import {SharePage} from "./Pages/SharePage/SharePage";
+    import {SharePage} from './Pages/SharePage/SharePage';
     import {LoginPage} from './Pages/LoginPage/LoginPage';
     import {SettingsPage} from './Pages/SettingsPage/SettingsPage';
     import {initQuoteAPI} from './modules/clients/quote';
@@ -41,8 +41,8 @@
             setContext({
                 ...context,
                 currentQuote: quote
-            })
-        }
+            });
+        };
 
         React.useEffect(() => {
             const token = userAPI.RestoreToken();

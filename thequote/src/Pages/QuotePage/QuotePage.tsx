@@ -124,7 +124,7 @@ export const QuotePage: React.FC = () => {
 
         if (route === location.pathname) {
             if (tab.page === 'Today\'s quote') {
-                context.setCurrentQuote(null)
+                context.setCurrentQuote(null);
                 fetchQuote();
             }
         }

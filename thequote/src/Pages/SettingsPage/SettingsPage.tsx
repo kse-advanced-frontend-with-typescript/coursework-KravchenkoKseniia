@@ -6,7 +6,7 @@ import {AppContext} from '../../context';
 import React, {useContext, useEffect, useState} from 'react';
 import styles from './styles.module.css';
 import {useNavigate} from 'react-router';
-import {NotificationElement} from "../../Components/NotificationElement/NotificationElement";
+import {NotificationElement} from '../../Components/NotificationElement/NotificationElement';
 
 const iconTypes: IconType[] = [
     'motivation',
@@ -59,13 +59,13 @@ export const SettingsPage: React.FC = () => {
     };
 
     const logout = () => {
-        appContext.cleanUser()
+        appContext.cleanUser();
         navigate('/login');
     };
 
     const handleLogin = () => {
         navigate('/login');
-    }
+    };
 
     const handleToolbarClick = (tab: ToolbarType) => {
         let route : string;

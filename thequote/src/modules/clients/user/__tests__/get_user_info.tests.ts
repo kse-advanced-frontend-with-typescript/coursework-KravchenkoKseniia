@@ -27,8 +27,8 @@ describe('User API: Get User Info', () => {
                 password: 'some_password',
                 token: 'some_token',
             }]);
-        })
-    })
+        });
+    });
 
     describe('when user does not exist', () => {
         const body: User = [];
@@ -45,6 +45,6 @@ describe('User API: Get User Info', () => {
             await expect(api.GetUserInfo('some_token')).rejects.toThrow('User does not exist');
         });
 
-    })
+    });
 
 });

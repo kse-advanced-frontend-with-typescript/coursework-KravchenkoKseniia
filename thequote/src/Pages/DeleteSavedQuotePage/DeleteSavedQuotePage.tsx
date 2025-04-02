@@ -48,22 +48,22 @@ export const DeleteSavedQuotePage: React.FC = () => {
         try {
             await context.quoteAPI.DeleteSavedQuote(quote.content, quote.author);
             setDeleteNotification({level: 'success', message: 'Successfully deleted!'});
-            navigate('/save')
+            navigate('/save');
         }
         catch (e) {
             setError('Error during deleting the quote');
         }
-    }
+    };
 
     const backToSavedQuotesHandleClick = () => {
-        navigate('/save')
-    }
+        navigate('/save');
+    };
 
     return (
         <>
             <Header title='THE SAVED QUOTE'/>
             {deleteNotification && <NotificationElement level={deleteNotification.level} message={deleteNotification.message} />}
-            { isProcessing && <NotificationElement level={"info"} message={"Loading..."}/>}
+            { isProcessing && <NotificationElement level={'info'} message={'Loading...'}/>}
             { error && <NotificationElement level='error' message={`Error: ${error}`}/>}
             {quote &&
                 <>
