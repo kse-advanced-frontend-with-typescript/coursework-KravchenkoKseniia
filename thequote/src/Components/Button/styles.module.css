@@ -9,9 +9,6 @@
 }
 
 .btn {
-    background-color: #424242;
-    border: none;
-    color: white;
     padding: 14px 0;
     /*width: 315px;*/
     text-align: center;
@@ -25,6 +22,18 @@
     letter-spacing: -0.41px;
     font-weight: 500;
     width: 100%;
+}
+
+.default {
+    background-color: #424242;
+    border: none;
+    color: white;
+}
+
+.inverse{
+    background-color: white;
+    border: #424242 solid 1px;
+    color: #424242;
 }
 
 .btn:disabled {

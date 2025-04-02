@@ -143,7 +143,7 @@ export const QuotePage: React.FC = () => {
                 <NotificationElement level={'error'} message={String(error)} />
             )}
             <div className={styles.container}>
-                <Button title={'SAVE'} onClick={saveQuoteHandleClick} />
+                <Button title={'SAVE'} type={'default'} onClick={saveQuoteHandleClick} />
             </div>
 
             {saveNotification && <NotificationElement level={saveNotification.level} message={saveNotification.message} />}

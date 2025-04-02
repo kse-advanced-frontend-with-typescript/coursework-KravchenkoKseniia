@@ -71,6 +71,10 @@ export const SavedQuotesPage: React.FC = () => {
         }
     };
 
+    const onSaveQuoteClick = (quote: string, author: string) => {
+        navigate(`/share-or-delete/${encodeURIComponent(quote)}-${encodeURIComponent(author)}`)
+    }
+
     React.useEffect(() => {
         if (!context.user || context.user.length === 0) {
             setIsProcessing(false);
@@ -89,7 +93,7 @@ export const SavedQuotesPage: React.FC = () => {
                 {error && <NotificationElement level={'error'} message={`Error while fetching quotes: ${error}`} />}
                 <div className={styles.savedquotes}>
                     {quotes.map((quote, index) => (
-                        <SmallQuote key={index} quote={quote.quote} author={quote.author} />
+                        <SmallQuote key={index} quote={quote.quote} author={quote.author} onClick={() => onSaveQuoteClick(quote.quote, quote.author)}/>
                     ))}
                 </div>
                 <Toolbar initialTab={1} onTabClick={handleToolbarClick}/>

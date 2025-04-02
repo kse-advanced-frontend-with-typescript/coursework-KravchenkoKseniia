@@ -129,10 +129,10 @@ export const SettingsPage: React.FC = () => {
 
                     { appContext.user && appContext.user[0]?._id ?
                         <>
-                            <Button onClick={handleSave} title={'Save'}/><Button title={'Logout'} onClick={cleanUser}/>
+                            <Button onClick={handleSave} type={'default'} title={'Save'}/><Button title={'Logout'} type={'inverse'} onClick={cleanUser}/>
                         </>
                         :
-                        <Button title={'Login'} onClick={handleLogin} />
+                        <Button title={'Login'} type={'default'} onClick={handleLogin} />
                     }
 
                 </div>

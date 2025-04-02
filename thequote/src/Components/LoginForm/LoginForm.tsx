@@ -22,7 +22,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({onSub, isDis, loginRef, pas
                     <input type="password" className={styles.input} ref={passwordRef} />
                 </div>
                 <div className={styles.btnContainer}>
-                    <Button title={'Login'} isDisabled={isDis} />
+                    <Button title={'Login'} type={'default'} isDisabled={isDis} />
                 </div>
             </form>
         </div>
