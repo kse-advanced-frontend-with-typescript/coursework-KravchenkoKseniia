@@ -20,6 +20,11 @@ export const QuotePage: React.FC = () => {
     const [savedQuotes, setSavedQuotes] = React.useState<{content: string, author: string}[]>([]);
 
     const fetchQuote = async () => {
+        if (context.currentQuote) {
+            setQuote(context.currentQuote);
+            setIsProcessing(false);
+            return;
+        }
         setError('');
         setIsProcessing(true);
 
@@ -38,6 +43,7 @@ export const QuotePage: React.FC = () => {
             if (quoteData && quoteData.length > 0) {
                 const {content, author} = quoteData[0];
                 setQuote({content, author});
+                context.setCurrentQuote({content, author});
             }
             else {
                 console.error('No quote found');
@@ -118,6 +124,7 @@ export const QuotePage: React.FC = () => {
 
         if (route === location.pathname) {
             if (tab.page === 'Today\'s quote') {
+                context.setCurrentQuote(null)
                 fetchQuote();
             }
         }

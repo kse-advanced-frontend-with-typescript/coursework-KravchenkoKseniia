@@ -3,6 +3,8 @@ import {initUserAPI, User} from './modules/clients/user';
 import {IconType} from './Components/IconButton/IconButton';
 import {initQuoteAPI} from './modules/clients/quote';
 
+export type Quote = {content: string, author: string} | null;
+
 type AppContext = {
     readonly user?: User
     setUser: (user: User) => void
@@ -10,6 +12,8 @@ type AppContext = {
     userAPI: ReturnType<typeof initUserAPI>
     quoteAPI?: ReturnType<typeof initQuoteAPI>
     categories?: IconType[]
+    currentQuote?: Quote
+    setCurrentQuote: (quote: Quote) => void
 }
 
 export const AppContext = React.createContext<AppContext>({
@@ -17,5 +21,7 @@ export const AppContext = React.createContext<AppContext>({
     userAPI: {} as ReturnType<typeof initUserAPI>,
     quoteAPI: {} as ReturnType<typeof initQuoteAPI>,
     categories: [],
-    cleanUser: () => {}
+    cleanUser: () => {},
+    currentQuote: undefined,
+    setCurrentQuote: (quote: Quote) => {},
 });

@@ -1,7 +1,7 @@
 ﻿    import React, {useState} from 'react';
     import styles from './main.module.css';
     import {Route, Routes} from 'react-router';
-    import {AppContext} from './context';
+    import {AppContext, Quote} from './context';
     import {initUserAPI, User} from './modules/clients/user';
     import {QuotePage} from './Pages/QuotePage/QuotePage';
     import {SharePage} from "./Pages/SharePage/SharePage";
@@ -13,7 +13,7 @@
 
 
     export const App: React.FC = () => {
-        const [context, setContext] = useState<{ user?: User }>({});
+        const [context, setContext] = useState<{ user?: User, currentQuote?: Quote}>({});
 
         const userAPI = initUserAPI(process.env.API_KEY ?? '', fetch);
         const quoteAPI = initQuoteAPI(process.env.API_KEY ?? '', fetch);
@@ -37,6 +37,13 @@
             userAPI.CleanToken();
         };
 
+        const setCurrentQuote = (quote: Quote) => {
+            setContext({
+                ...context,
+                currentQuote: quote
+            })
+        }
+
         React.useEffect(() => {
             const token = userAPI.RestoreToken();
             if (!token) return;
@@ -53,6 +60,7 @@
                     ...context,
                     setUser,
                     cleanUser,
+                    setCurrentQuote,
                     userAPI,
                     quoteAPI,
                     categories: context.user && context.user.length > 0 ? context.user[0].categories || [] : []
