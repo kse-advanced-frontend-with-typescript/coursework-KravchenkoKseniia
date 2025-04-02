@@ -32,3 +32,7 @@
     font-weight: 400;
     color: #000000;
 }
+
+.btnContainer{
+    margin: 50px auto 0;
+}
