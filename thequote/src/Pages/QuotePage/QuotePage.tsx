@@ -96,8 +96,8 @@ export const QuotePage: React.FC = () => {
         }
     }, [saveNotification]);
 
-    const handleToolbarClick = (tab: ToolbarType, index: number, isActive: boolean) => {
-        let route = '';
+    const handleToolbarClick = (tab: ToolbarType) => {
+        let route : string;
         switch (tab.page) {
             case 'Settings':
                 route = '/settings';

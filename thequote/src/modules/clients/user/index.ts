@@ -68,6 +68,42 @@ export const initUserAPI = (api_key: string, fetchAPI: typeof fetch) => {
         throw Error('User does not exist');
     };
 
+    const GetUserInfo = async (token: string): Promise<User> => {
+        const headers = new Headers();
+        headers.set('x-apikey', api_key);
+        headers.set('Content-Type', 'application/json');
+        headers.set('cache-control', 'no-cache');
+
+        const query = {
+            token
+        };
+
+        const params = new URLSearchParams();
+        params.set('q', JSON.stringify(query));
+
+        const res = await fetchAPI(`https://thequote-9624.restdb.io/rest/login?${params.toString()}`, {
+            headers
+        });
+
+        if (!res.ok) {
+            throw Error(`Could not fetch token: ${res.statusText}`);
+        }
+
+        const data = await res.json();
+        const user = convertToType(data, UserSchema);
+
+        if(user.length > 0) {
+            return [{
+                _id: user[0]._id,
+                username: user[0].username,
+                password: user[0].password,
+                token: user[0].token
+            }];
+        }
+
+        throw Error('User does not exist');
+    }
+
     const RestoreToken = (): string | null => {
         return window.localStorage.getItem(SESSION_KEY);
     };
@@ -83,6 +119,7 @@ export const initUserAPI = (api_key: string, fetchAPI: typeof fetch) => {
 
     return {
         GetUserToken,
+        GetUserInfo,
         RestoreToken,
         CleanToken,
         SaveToken

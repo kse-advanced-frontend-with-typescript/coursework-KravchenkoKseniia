@@ -14,8 +14,9 @@ export const SavedQuotesPage: React.FC = () => {
     const [isProcessing, setIsProcessing] = React.useState<boolean>(true);
     const [error, setError] = React.useState<string>();
 
-    const handleToolbarClick = (tab: ToolbarType, index: number, isActive: boolean) => {
-        let route = '';
+
+    const handleToolbarClick = (tab: ToolbarType) => {
+        let route: string;
         switch (tab.page) {
             case 'Settings':
                 route = '/settings';
@@ -71,8 +72,13 @@ export const SavedQuotesPage: React.FC = () => {
     };
 
     React.useEffect(() => {
+        if (!context.user || context.user.length === 0) {
+            setIsProcessing(false);
+            setError('User not found. Please login.');
+            return;
+        }
         fetchSavedQuotes();
-    }, [context.quoteAPI]);
+    }, [context.quoteAPI, context.user]);
 
 
     return (
@@ -80,7 +86,7 @@ export const SavedQuotesPage: React.FC = () => {
             <div className={styles.content}>
                 <Header title={'SAVED QUOTES'}/>
                 {isProcessing && <NotificationElement level={'info'} message={'Loading...'} />}
-                {error && <NotificationElement level={'error'} message={'Error while fetching quotes'} />}
+                {error && <NotificationElement level={'error'} message={`Error while fetching quotes: ${error}`} />}
                 <div className={styles.savedquotes}>
                     {quotes.map((quote, index) => (
                         <SmallQuote key={index} quote={quote.quote} author={quote.author} />
