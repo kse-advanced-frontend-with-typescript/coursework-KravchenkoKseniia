@@ -25,6 +25,7 @@ const iconTypes: IconType[] = [
 
 export const SettingsPage: React.FC = () => {
     const navigate = useNavigate();
+    const appContext = useContext(AppContext);
     const [context, setContext] = useState<{user?: User}>({ });
     const [selectedIcons, setSelectedIcons] = useState<IconType[]>([]);
     const {setUser, user, userAPI} = useContext(AppContext);
@@ -64,6 +65,10 @@ export const SettingsPage: React.FC = () => {
         userAPI.CleanToken();
         navigate('/login');
     };
+
+    const handleLogin = () => {
+        navigate('/login');
+    }
 
     const handleToolbarClick = (tab: ToolbarType) => {
         let route : string;
@@ -106,8 +111,17 @@ export const SettingsPage: React.FC = () => {
                     ))}
                 </div>
                 <div className={styles.container}>
-                    <Button onClick={handleSave} title={'Save'}/>
-                    <Button title={'Logout'} onClick={cleanUser}/>
+                    {/*<Button onClick={handleSave} title={'Save'}/>*/}
+                    {/*<Button title={'Logout'} onClick={cleanUser}/>*/}
+
+                    { appContext.user && appContext.user[0]?._id ?
+                        <>
+                            <Button onClick={handleSave} title={'Save'}/><Button title={'Logout'} onClick={cleanUser}/>
+                        </>
+                        :
+                        <Button title={'Login'} onClick={handleLogin} />
+                    }
+
                 </div>
 
                 <Toolbar initialTab={0} onTabClick={handleToolbarClick}/>

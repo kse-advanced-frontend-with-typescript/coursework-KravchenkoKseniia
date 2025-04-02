@@ -26,15 +26,15 @@
                 user
             });
         };
-        //
-        // useEffect(() => {
-        //     const token = userAPI.RestoreToken();
-        //     if (!token) return;
-        //
-        //     userAPI.(token).then(user => {
-        //         setUser(user);
-        //     }).catch(console.error);
-        // }, []);
+
+        React.useEffect(() => {
+            const token = userAPI.RestoreToken();
+            if (!token) return;
+
+            userAPI.GetUserInfo(token).then(user => {
+                setUser(user);
+            }).catch(console.error);
+        }, []);
 
 
         return (
