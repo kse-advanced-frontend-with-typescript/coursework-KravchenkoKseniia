@@ -28,6 +28,15 @@
             });
         };
 
+        const cleanUser = () => {
+            setContext({
+                ...context,
+                user: undefined
+            });
+
+            userAPI.CleanToken();
+        };
+
         React.useEffect(() => {
             const token = userAPI.RestoreToken();
             if (!token) return;
@@ -43,6 +52,7 @@
                 <AppContext.Provider value={{
                     ...context,
                     setUser,
+                    cleanUser,
                     userAPI,
                     quoteAPI,
                     categories: context.user && context.user.length > 0 ? context.user[0].categories || [] : []

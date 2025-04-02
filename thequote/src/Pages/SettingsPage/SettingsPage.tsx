@@ -5,7 +5,6 @@ import {Toolbar, ToolbarType} from '../../Components/Toolbar/Toolbar';
 import {AppContext} from '../../context';
 import React, {useContext, useEffect, useState} from 'react';
 import styles from './styles.module.css';
-import {User} from '../../modules/clients/user';
 import {useNavigate} from 'react-router';
 import {NotificationElement} from "../../Components/NotificationElement/NotificationElement";
 
@@ -27,9 +26,8 @@ const iconTypes: IconType[] = [
 export const SettingsPage: React.FC = () => {
     const navigate = useNavigate();
     const appContext = useContext(AppContext);
-    const [context, setContext] = useState<{user?: User}>({ });
     const [selectedIcons, setSelectedIcons] = useState<IconType[]>([]);
-    const {setUser, user, userAPI} = useContext(AppContext);
+    const {setUser, user} = useContext(AppContext);
     const [saveStatus, setSaveStatus] = useState<{level: 'error' | 'success' | 'info' | 'warning', message: string} | null>(null);
 
     useEffect(() => {
@@ -60,13 +58,8 @@ export const SettingsPage: React.FC = () => {
 
     };
 
-    const cleanUser = () => {
-        setContext({
-            ...context,
-            user: undefined
-        });
-
-        userAPI.CleanToken();
+    const logout = () => {
+        appContext.cleanUser()
         navigate('/login');
     };
 
@@ -129,7 +122,8 @@ export const SettingsPage: React.FC = () => {
 
                     { appContext.user && appContext.user[0]?._id ?
                         <>
-                            <Button onClick={handleSave} type={'default'} title={'Save'}/><Button title={'Logout'} type={'inverse'} onClick={cleanUser}/>
+                            <Button onClick={handleSave} type={'default'} title={'Save'}/>
+                            <Button title={'Logout'} type={'inverse'} onClick={logout}/>
                         </>
                         :
                         <Button title={'Login'} type={'default'} onClick={handleLogin} />
