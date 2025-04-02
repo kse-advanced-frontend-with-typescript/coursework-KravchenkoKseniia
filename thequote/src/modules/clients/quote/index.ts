@@ -33,12 +33,17 @@ const PostSavedQuoteItemSchema = Type.Object({
     _version: Type.Number()
 });
 
+const DeleteSavedQuoteItemSchema = Type.Object({
+    result: Type.Array(Type.String())
+});
+
 const QuoteResponseSchema = Type.Array(QuoteItemSchema);
 const SavedQuoteResponseSchema = Type.Array(SavedQuoteItemSchema);
 
 export type QuoteItem = Static<typeof QuoteResponseSchema>;
 export type SavedQuoteItem = Static<typeof SavedQuoteResponseSchema>;
 export type PostSavedQuoteItem = Static<typeof PostSavedQuoteItemSchema>;
+export type DeleteSavedQuoteItem = Static<typeof DeleteSavedQuoteItemSchema>;
 
 export const initQuoteAPI = (api_key: string, fetchAPI: typeof fetch) => {
     const GetQuote = async (categories: Array<string>) : Promise<QuoteItem> => {
@@ -102,10 +107,72 @@ export const initQuoteAPI = (api_key: string, fetchAPI: typeof fetch) => {
         return convertToType(data, PostSavedQuoteItemSchema);
     };
 
+    const GetSavedQuoteInfo = async (quote: string, author: string) : Promise<SavedQuoteItem> => {
+        const headers = new Headers();
+        headers.set('x-apikey', api_key);
+        headers.set('Content-Type', 'application/json');
+        headers.set('cache-control', 'no-cache');
+
+        const query = {
+            quote: quote,
+            author: author
+        };
+
+        const params = new URLSearchParams();
+        params.set('q', JSON.stringify(query));
+
+        const res = await fetchAPI(`https://thequote-9624.restdb.io/rest/savedquotes?${params.toString()}`, {
+            headers
+        });
+
+        if (!res.ok) {
+            throw Error(`Could not fetch saved quotes: ${res.statusText}`);
+        }
+
+        const data = await res.json();
+
+        return convertToType(data, SavedQuoteResponseSchema);
+    }
+
+    const DeleteSavedQuote = async (quote: string, author: string) : Promise<DeleteSavedQuoteItem> => {
+        //{"result":["67e9779f59a5aa4a00001fe0"]} - if found
+        // {"message":"Not found"} - if not found
+
+        //curl -k -H "Content-Type: application/json" -H "x-apikey: 2ef09655927bb6f9141452b0ec4b481c00e56"
+        // -X DELETE 'https://thequote-9624.restdb.io/rest/savedquotes/67e9779f59a5aa4a00001fe0'
+
+        const headers = new Headers();
+        headers.set('x-apikey', api_key);
+        headers.set('Content-Type', 'application/json');
+        headers.set('cache-control', 'no-cache');
+
+        const quoteInfo = await GetSavedQuoteInfo(quote, author);
+
+        const quoteId = quoteInfo[0]._id;
+
+        const res = await fetchAPI(`https://thequote-9624.restdb.io/rest/savedquotes/${quoteId}`, {
+            method: 'DELETE',
+            headers
+        });
+
+        if (!res.ok) {
+            throw Error(`Could not delete saved quote: ${res.statusText}`);
+        }
+
+        const data = await res.json();
+        if (data.message === 'Not found') {
+            throw Error('Quote not found');
+        }
+
+        return convertToType(data, DeleteSavedQuoteItemSchema);
+    }
+
     return {
         GetQuote,
         GetSavedQuotes,
-        PostSavedQuote
+        PostSavedQuote,
+        GetSavedQuoteInfo,
+        DeleteSavedQuote
     };
 };
 
