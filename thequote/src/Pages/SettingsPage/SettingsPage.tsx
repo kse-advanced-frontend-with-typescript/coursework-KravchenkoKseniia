@@ -7,6 +7,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import styles from './styles.module.css';
 import {User} from '../../modules/clients/user';
 import {useNavigate} from 'react-router';
+import {NotificationElement} from "../../Components/NotificationElement/NotificationElement";
 
 const iconTypes: IconType[] = [
     'motivation',
@@ -29,6 +30,7 @@ export const SettingsPage: React.FC = () => {
     const [context, setContext] = useState<{user?: User}>({ });
     const [selectedIcons, setSelectedIcons] = useState<IconType[]>([]);
     const {setUser, user, userAPI} = useContext(AppContext);
+    const [saveStatus, setSaveStatus] = useState<{level: 'error' | 'success' | 'info' | 'warning', message: string} | null>(null);
 
     useEffect(() => {
         if (user && user.length > 0 && user[0].categories) {
@@ -49,9 +51,11 @@ export const SettingsPage: React.FC = () => {
             const updatedUser = [{...user[0], categories: selectedIcons}];
             setUser(updatedUser);
             console.log('Saved categories:', selectedIcons);
+            setSaveStatus({level: 'success', message: 'Categories saved successfully'});
         }
         else {
             console.log('User not found');
+            setSaveStatus({level: 'error', message: 'User not found'});
         }
 
     };
@@ -94,12 +98,21 @@ export const SettingsPage: React.FC = () => {
         }
     };
 
+    React.useEffect(() => {
+        if (saveStatus) {
+            const timer = setTimeout(() => setSaveStatus(null), 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [saveStatus]);
 
     return (
         <>
 
             <div className={styles.content}>
                 <Header title={'SETTINGS'}/>
+                { saveStatus &&
+                    <NotificationElement level={saveStatus.level} message={saveStatus.message} />
+                }
                 <div className={styles.icons}>
                     {iconTypes.map((iconType) => (
                         <IconButton
