@@ -3,7 +3,7 @@
 .container {
     border-radius: 22px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 25%);
-    margin: 126px auto 0;
+    /*margin: 126px auto 0;*/
     max-width: 353px;
     padding: 96.6px 22px 116px 21px;
     text-align: center;

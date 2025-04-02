@@ -6,6 +6,7 @@ import {useLocation, useNavigate} from 'react-router';
 import React from 'react';
 import {NotificationElement} from '../../Components/NotificationElement/NotificationElement';
 import {Button} from '../../Components/Button/Button';
+import styles from './styles.module.css';
 
 export const QuotePage: React.FC = () => {
     const navigate = useNavigate();
@@ -135,11 +136,16 @@ export const QuotePage: React.FC = () => {
             {isProcessing ? (
                 <NotificationElement level={'info'} message={'Loading...'}/>
             ) : quote ? (
-                <BigQuote quote={quote.content} author={quote.author} />
+                <div className={styles.quoteContainer}>
+                    <BigQuote quote={quote.content} author={quote.author} />
+                </div>
             ) : (
                 <NotificationElement level={'error'} message={String(error)} />
             )}
-            <Button title={'SAVE'} onClick={saveQuoteHandleClick} />
+            <div className={styles.container}>
+                <Button title={'SAVE'} onClick={saveQuoteHandleClick} />
+            </div>
+
             {saveNotification && <NotificationElement level={saveNotification.level} message={saveNotification.message} />}
             <Toolbar initialTab={3} onTabClick={handleToolbarClick} />
         </>

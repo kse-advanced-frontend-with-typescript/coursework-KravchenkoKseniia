@@ -105,8 +105,11 @@ export const SettingsPage: React.FC = () => {
                         />
                     ))}
                 </div>
-                <Button onClick={handleSave} title={'Save'}/>
-                <Button title={'Logout'} onClick={cleanUser}/>
+                <div className={styles.container}>
+                    <Button onClick={handleSave} title={'Save'}/>
+                    <Button title={'Logout'} onClick={cleanUser}/>
+                </div>
+
                 <Toolbar initialTab={0} onTabClick={handleToolbarClick}/>
             </div>
         </>

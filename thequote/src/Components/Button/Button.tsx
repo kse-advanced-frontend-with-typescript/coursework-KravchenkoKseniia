@@ -10,8 +10,8 @@ interface ButtonProps {
 
 export const Button = ({onClick, title = 'SAVE', isDisabled}: ButtonProps) => {
     return (
-        <div className={styles.container}>
+        // <div className={styles.container}>
             <button onClick={onClick} className={styles.btn} disabled={isDisabled}>{title}</button>
-        </div>
+        // </div>
     );
 };
