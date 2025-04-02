@@ -131,6 +131,10 @@ export const initQuoteAPI = (api_key: string, fetchAPI: typeof fetch) => {
 
         const data = await res.json();
 
+        if (data.length === 0 || !Array.isArray(data)) {
+            throw Error('Quote not found');
+        }
+
         return convertToType(data, SavedQuoteResponseSchema);
     }
 
