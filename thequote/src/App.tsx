@@ -13,7 +13,7 @@
 
 
     export const App: React.FC = () => {
-        const [context, setContext] = useState<{ user?: User, currentQuote?: Quote}>({});
+        const [context, setContext] = useState<{ user?: User, currentQuote?: Quote, lastSavedQuote?: Quote}>({});
 
         const userAPI = initUserAPI(process.env.API_KEY ?? '', fetch);
         const quoteAPI = initQuoteAPI(process.env.API_KEY ?? '', fetch);
@@ -44,6 +44,14 @@
             });
         };
 
+        const setLastSavedQuote = (quote: Quote) => {
+            setContext({
+                ...context,
+                lastSavedQuote: quote
+            });
+        }
+
+
         React.useEffect(() => {
             const token = userAPI.RestoreToken();
             if (!token) return;
@@ -61,6 +69,7 @@
                     setUser,
                     cleanUser,
                     setCurrentQuote,
+                    setLastSavedQuote,
                     userAPI,
                     quoteAPI,
                     categories: context.user && context.user.length > 0 ? context.user[0].categories || [] : []

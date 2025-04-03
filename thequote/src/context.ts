@@ -14,6 +14,8 @@ type AppContext = {
     categories?: IconType[]
     currentQuote?: Quote
     setCurrentQuote: (quote: Quote) => void
+    lastSavedQuote?: Quote
+    setLastSavedQuote: (quote: Quote) => void
 }
 
 export const AppContext = React.createContext<AppContext>({
@@ -24,4 +26,6 @@ export const AppContext = React.createContext<AppContext>({
     cleanUser: () => {},
     currentQuote: undefined,
     setCurrentQuote: (quote: Quote) => {},
+    lastSavedQuote: undefined,
+    setLastSavedQuote: (quote: Quote) => {}
 });

@@ -79,6 +79,11 @@ export const QuotePage: React.FC = () => {
             return;
         }
 
+        if (context.lastSavedQuote?.content === quote.content && context.lastSavedQuote?.author === quote.author) {
+            setSaveNotification({level: 'info', message: 'Quote already saved'});
+            return;
+        }
+
         try {
             const savedQuote = await context.quoteAPI.PostSavedQuote(
                 context.user[0].username,
@@ -88,6 +93,7 @@ export const QuotePage: React.FC = () => {
 
             console.log(savedQuote);
             setSavedQuotes([...savedQuotes, quote]);
+            context.setLastSavedQuote({content: savedQuote.quote, author: savedQuote.author});
             setSaveNotification({level: 'success', message: 'Quote saved successfully'});
         }
         catch (e) {
