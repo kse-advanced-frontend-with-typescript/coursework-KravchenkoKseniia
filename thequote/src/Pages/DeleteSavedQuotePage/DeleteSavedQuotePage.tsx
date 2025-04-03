@@ -73,6 +73,7 @@ export const DeleteSavedQuotePage: React.FC = () => {
                     <div className={styles.container}>
                         <Button title={'BACK'} type={'default'} onClick={backToSavedQuotesHandleClick} />
                         <Button title={'DELETE'} type={'inverse'} onClick={deleteSavedQuoteHandleClick}/>
+                        {/*<Button title={'SHARE'} type={'default'} onClick={shareSavedQuoteHandleClick} />*/}
                     </div>
                 </>
             }

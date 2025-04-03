@@ -10,6 +10,6 @@
     width: 100%;
 }
 
-.container > button:nth-child(1) {
+.container > button:not(:last-child) {
     margin-bottom: 15px;
 }
