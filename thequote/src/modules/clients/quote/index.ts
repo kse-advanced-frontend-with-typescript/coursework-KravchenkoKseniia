@@ -62,13 +62,24 @@ export const initQuoteAPI = (api_key: string, fetchAPI: typeof fetch) => {
         return convertToType(data, QuoteResponseSchema);
     };
 
-    const GetSavedQuotes = async () : Promise<SavedQuoteItem> => {
+    const GetSavedQuotes = async (id: string, username: string) : Promise<SavedQuoteItem> => {
         const headers = new Headers();
         headers.set('x-apikey', api_key);
         headers.set('Content-Type', 'application/json');
         headers.set('cache-control', 'no-cache');
 
-        const res = await fetchAPI('https://thequote-9624.restdb.io/rest/savedquotes', {
+        if (!id) {
+            throw Error('User not found');
+        }
+
+        const query = {
+            username: username,
+        };
+
+        const params = new URLSearchParams();
+        params.set('q', JSON.stringify(query));
+
+        const res = await fetchAPI(`https://thequote-9624.restdb.io/rest/savedquotes?${params.toString()}`, {
             headers
         });
 

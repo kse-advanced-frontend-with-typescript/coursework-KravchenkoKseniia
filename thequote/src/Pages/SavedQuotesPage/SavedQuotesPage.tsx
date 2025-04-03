@@ -50,7 +50,16 @@ export const SavedQuotesPage: React.FC = () => {
         }
 
         try {
-            const quoteData = await context.quoteAPI.GetSavedQuotes();
+            console.log(context.user);
+
+            if (!context.user || context.user.length === 0) {
+                setError('User not found');
+                setIsProcessing(false);
+                return;
+            }
+            const {_id, username} = context.user?.[0] ?? {};
+
+            const quoteData = await context.quoteAPI.GetSavedQuotes(_id, username);
 
             if (quoteData && quoteData.length > 0) {
                 const savedQuotes = quoteData.map(item => ({
