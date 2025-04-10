@@ -39,15 +39,6 @@
             });
         };
 
-        // const setCategories = (categories: IconType[]) => {
-        //     categoriesAPI.SaveCategories(categories);
-        //
-        //     setContext({
-        //         ...context,
-        //         categories: categories
-        //     });
-        // };
-
         const cleanUser = () => {
             setContext({
                 ...context,
