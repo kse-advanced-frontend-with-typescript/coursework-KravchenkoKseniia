@@ -71,30 +71,56 @@
 
         return (
             <>
-                <Loader isLoading={userFetching}/>
-                <AppContext.Provider value={{
-                    ...context,
-                    setUser,
-                    cleanUser,
-                    setCurrentQuote,
-                    setLastSavedQuote,
-                    userAPI,
-                    quoteAPI,
-                    categories: context.user && context.user.length > 0 ? context.user[0].categories || [] : []
-                }}>
-                    <div className={styles.app}>
-                        <div className={styles.content}>
-                            <Routes>
-                                <Route index element={<QuotePage/>}/>
-                                <Route path="login" element={<LoginPage/>}/>
-                                <Route path="settings" element={<SettingsPage/>}/>
-                                <Route path="share" element={<SharePage/>}/>
-                                <Route path="save" element={<SavedQuotesPage/>}/>
-                                <Route path="share-or-delete/:quoteId" element={<DeleteSavedQuotePage/>}/>
-                            </Routes>
+                {userFetching ?
+                <Loader isLoading={userFetching} /> :
+                    <AppContext.Provider value={{
+                        ...context,
+                        setUser,
+                        cleanUser,
+                        setCurrentQuote,
+                        setLastSavedQuote,
+                        userAPI,
+                        quoteAPI,
+                        categories: context.user && context.user.length > 0 ? context.user[0].categories || [] : []
+                    }}>
+                        <div className={styles.app}>
+                            <div className={styles.content}>
+                                <Routes>
+                                    <Route index element={<QuotePage/>}/>
+                                    <Route path="login" element={<LoginPage/>}/>
+                                    <Route path="settings" element={<SettingsPage/>}/>
+                                    <Route path="share" element={<SharePage/>}/>
+                                    <Route path="save" element={<SavedQuotesPage/>}/>
+                                    <Route path="share-or-delete/:quoteId" element={<DeleteSavedQuotePage/>}/>
+                                </Routes>
+                            </div>
                         </div>
-                    </div>
-                </AppContext.Provider>
+                    </AppContext.Provider>
+                }
+
+                {/*<AppContext.Provider value={{*/}
+                {/*    ...context,*/}
+                {/*    setUser,*/}
+                {/*    cleanUser,*/}
+                {/*    setCurrentQuote,*/}
+                {/*    setLastSavedQuote,*/}
+                {/*    userAPI,*/}
+                {/*    quoteAPI,*/}
+                {/*    categories: context.user && context.user.length > 0 ? context.user[0].categories || [] : []*/}
+                {/*}}>*/}
+                {/*    <div className={styles.app}>*/}
+                {/*        <div className={styles.content}>*/}
+                {/*            <Routes>*/}
+                {/*                <Route index element={<QuotePage/>}/>*/}
+                {/*                <Route path="login" element={<LoginPage/>}/>*/}
+                {/*                <Route path="settings" element={<SettingsPage/>}/>*/}
+                {/*                <Route path="share" element={<SharePage/>}/>*/}
+                {/*                <Route path="save" element={<SavedQuotesPage/>}/>*/}
+                {/*                <Route path="share-or-delete/:quoteId" element={<DeleteSavedQuotePage/>}/>*/}
+                {/*            </Routes>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*</AppContext.Provider>*/}
             </>
         );
 
