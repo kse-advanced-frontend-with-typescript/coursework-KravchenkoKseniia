@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import styles from './styles.module.css';
 import {
-    FacebookIcon,
+    FacebookIcon, FacebookShareButton,
     LinkedinIcon,
     RedditIcon,
     TelegramIcon,
@@ -17,7 +17,9 @@ export const SocialMedia = () => {
 
     return (
         <div className={styles.container}>
-            <FacebookIcon size={50} round={true} />
+            <FacebookShareButton hashtag={'#123'} url={'/share'}>
+                <FacebookIcon size={50} round={true}/>
+            </FacebookShareButton>
             <LinkedinIcon size={50} round={true} />
             <RedditIcon size={50} round={true} />
             <TelegramIcon size={50} round={true} />

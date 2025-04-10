@@ -14,6 +14,7 @@
 
     export const App: React.FC = () => {
         const [context, setContext] = useState<{ user?: User, currentQuote?: Quote, lastSavedQuote?: Quote}>({});
+        const [userFetching, setUserFetching] = useState(false);
 
         const userAPI = initUserAPI(process.env.API_KEY ?? '', fetch);
         const quoteAPI = initQuoteAPI(process.env.API_KEY ?? '', fetch);
@@ -49,21 +50,27 @@
                 ...context,
                 lastSavedQuote: quote
             });
-        }
+        };
 
 
         React.useEffect(() => {
             const token = userAPI.RestoreToken();
             if (!token) return;
 
+            setUserFetching(true);
+
             userAPI.GetUserInfo(token).then(user => {
                 setUser(user);
-            }).catch(console.error);
+            }).catch(console.error)
+                .finally( () =>
+                setUserFetching(false)
+            );
         }, []);
 
 
         return (
             <>
+                {userFetching && <div className={styles.loading}>Loading...</div> }
                 <AppContext.Provider value={{
                     ...context,
                     setUser,

@@ -39,6 +39,8 @@
     "babel-loader": "^9.2.1",
     "cross-env": "^7.0.3",
     "css-loader": "^7.1.2",
+    "cypress": "^14.2.1",
+    "cypress-match-screenshot": "^1.1.0",
     "dotenv-webpack": "^8.1.0",
     "eslint": "^9.19.0",
     "eslint-plugin-react": "^7.37.4",
