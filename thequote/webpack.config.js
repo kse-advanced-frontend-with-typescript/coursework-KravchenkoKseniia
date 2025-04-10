@@ -35,6 +35,13 @@ module.exports = {
                 ],
             },
             {
+                test: /\.(png|jpe?g|gif)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'images/[name][hash][ext][query]'
+                }
+            },
+            {
                 test: /\.(ts|tsx)$/,
                 exclude: /node_modules/,
                 loader: "ts-loader",
