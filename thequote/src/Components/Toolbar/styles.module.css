@@ -1,0 +1,41 @@
+﻿.toolbar{
+    /*border-radius: 22px;*/
+    /*box-shadow: 0 0 8px 0 rgba(0, 0, 0, 25%);*/
+    /*padding: 19px 0;*/
+    margin: 55px 0 0;
+    text-align: center;
+    max-width: 393px;
+    justify-content: space-around;
+    display: flex;
+    align-items: center;
+    background-color: white;
+}
+
+.tab {
+    padding: 0.2em 1.5em;
+    border: 1px solid transparent;
+    background: none;
+    font-size: 1em;
+    border-radius: 0.3em 0.3em 0 0;
+    position: relative;
+    top: 1px;
+    z-index: 0;
+}
+
+.active {
+
+}
+
+.active::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: #D7EAFD;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(5px);
+    z-index: -1;
+}
