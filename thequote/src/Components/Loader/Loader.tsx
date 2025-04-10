@@ -2,7 +2,7 @@
 import classNames from 'classnames';
 import styles from './styles.module.css';
 
-import loaderGif from './img/Search.gif'
+import loaderGif from './img/Search.gif';
 
 type LoaderElementType = {
     isLoading?: boolean

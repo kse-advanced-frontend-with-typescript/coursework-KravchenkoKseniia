@@ -10,7 +10,7 @@
     import {initQuoteAPI} from './modules/clients/quote';
     import {SavedQuotesPage} from './Pages/SavedQuotesPage/SavedQuotesPage';
     import {DeleteSavedQuotePage} from './Pages/DeleteSavedQuotePage/DeleteSavedQuotePage';
-    import {Loader} from "./Components/Loader/Loader";
+    import {Loader} from './Components/Loader/Loader';
 
 
     export const App: React.FC = () => {
