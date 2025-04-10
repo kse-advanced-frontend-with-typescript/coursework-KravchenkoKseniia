@@ -6,22 +6,22 @@ const UserSchema = Type.Array(Type.Object({
     username: Type.String(),
     password: Type.String(),
     token: Type.String(),
-    categories: Type.Optional(Type.Array(
-        Type.Union([
-            Type.Literal('motivation'),
-            Type.Literal('life'),
-            Type.Literal('wisdom'),
-            Type.Literal('love'),
-            Type.Literal('technology'),
-            Type.Literal('creativity'),
-            Type.Literal('change'),
-            Type.Literal('inspirational'),
-            Type.Literal('leadership'),
-            Type.Literal('happiness'),
-            Type.Literal('imagination'),
-            Type.Literal('friendship')
-        ])
-    )),
+    // categories: Type.Optional(Type.Array(
+    //     Type.Union([
+    //         Type.Literal('motivation'),
+    //         Type.Literal('life'),
+    //         Type.Literal('wisdom'),
+    //         Type.Literal('love'),
+    //         Type.Literal('technology'),
+    //         Type.Literal('creativity'),
+    //         Type.Literal('change'),
+    //         Type.Literal('inspirational'),
+    //         Type.Literal('leadership'),
+    //         Type.Literal('happiness'),
+    //         Type.Literal('imagination'),
+    //         Type.Literal('friendship')
+    //     ])
+    // )),
 }));
 
 export type User = Static<typeof UserSchema>

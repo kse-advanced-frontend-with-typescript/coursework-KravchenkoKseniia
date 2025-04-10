@@ -28,13 +28,14 @@ export const SettingsPage: React.FC = () => {
     const appContext = useContext(AppContext);
     const [selectedIcons, setSelectedIcons] = useState<IconType[]>([]);
     const {setUser, user} = useContext(AppContext);
+    const {categories} = useContext(AppContext);
     const [saveStatus, setSaveStatus] = useState<{level: 'error' | 'success' | 'info' | 'warning', message: string} | null>(null);
 
     useEffect(() => {
-        if (user && user.length > 0 && user[0].categories) {
-            setSelectedIcons(user[0].categories);
+        if (categories && categories.length > 0) {
+            setSelectedIcons(categories);
         }
-    }, [user]);
+    }, [categories]);
 
     const handleCLick = (iconType: IconType) => {
         if (selectedIcons.includes(iconType)) {
@@ -47,7 +48,8 @@ export const SettingsPage: React.FC = () => {
     const handleSave =  () => {
         if (user) {
             const updatedUser = [{...user[0], categories: selectedIcons}];
-            setUser(updatedUser);
+            setUser(updatedUser, selectedIcons);
+            // appContext.setCategories(selectedIcons);
             console.log('Saved categories:', selectedIcons);
             setSaveStatus({level: 'success', message: 'Categories saved successfully'});
         }
@@ -60,6 +62,7 @@ export const SettingsPage: React.FC = () => {
 
     const logout = () => {
         appContext.cleanUser();
+        appContext.cleanCategories();
         navigate('/login');
     };
 
@@ -97,7 +100,7 @@ export const SettingsPage: React.FC = () => {
             return () => clearTimeout(timer);
         }
     }, [saveStatus]);
-
+console.log(appContext.user);
     return (
         <>
 

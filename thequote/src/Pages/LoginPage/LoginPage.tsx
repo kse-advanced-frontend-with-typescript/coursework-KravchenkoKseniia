@@ -27,7 +27,7 @@ export const LoginPage: React.FC = () => {
 
         try {
             const user = await context.userAPI.GetUserToken(login.current!.value, password.current!.value);
-            context.setUser(user);
+            context.setUser(user, []);
             navigate('/settings');
         } catch (e) {
             console.error(e);

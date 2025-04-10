@@ -7,7 +7,7 @@ export type Quote = {content: string, author: string} | null;
 
 type AppContext = {
     readonly user?: User
-    setUser: (user: User) => void
+    setUser: (user: User, c: IconType[]) => void
     cleanUser: () => void
     userAPI: ReturnType<typeof initUserAPI>
     quoteAPI?: ReturnType<typeof initQuoteAPI>
@@ -16,6 +16,7 @@ type AppContext = {
     setCurrentQuote: (quote: Quote) => void
     lastSavedQuote?: Quote
     setLastSavedQuote: (quote: Quote) => void
+    cleanCategories: () => void
 }
 
 export const AppContext = React.createContext<AppContext>({
@@ -27,5 +28,6 @@ export const AppContext = React.createContext<AppContext>({
     currentQuote: undefined,
     setCurrentQuote: (quote: Quote) => {},
     lastSavedQuote: undefined,
-    setLastSavedQuote: (quote: Quote) => {}
+    setLastSavedQuote: (quote: Quote) => {},
+    cleanCategories: () => {}
 });

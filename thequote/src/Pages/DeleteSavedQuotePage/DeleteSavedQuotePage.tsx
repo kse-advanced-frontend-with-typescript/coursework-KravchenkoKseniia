@@ -51,7 +51,7 @@ export const DeleteSavedQuotePage: React.FC = () => {
             navigate('/save');
         }
         catch (e) {
-            setError('Error during deleting the quote');
+            setError(`Error during deleting the quote: ${e}`);
         }
     };
 
