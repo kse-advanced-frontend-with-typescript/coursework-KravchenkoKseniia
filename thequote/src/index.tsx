@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(
 );
 
 
-root.render(<BrowserRouter>
+root.render(<BrowserRouter basename={process.env.BASE_URL ? process.env.BASE_URL : '/'}>
     <App />
 </BrowserRouter>);
 export {schemaErrorToError} from './modules/clients/schemaErrorToError';
