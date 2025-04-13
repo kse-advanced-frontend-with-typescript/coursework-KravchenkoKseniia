@@ -51,6 +51,7 @@
     "html-webpack-plugin": "^5.6.3",
     "husky": "^9.1.7",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "^15.4.3",
     "storybook": "^8.6.6",
     "style-loader": "^4.0.0",
@@ -97,5 +98,8 @@
     "extends": [
       "plugin:storybook/recommended"
     ]
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
   }
 }
