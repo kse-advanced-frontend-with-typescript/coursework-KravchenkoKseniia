@@ -5,7 +5,7 @@ const mockGetItem = jest.fn();
 const mockSetItem = jest.fn();
 const mockRemoveItem = jest.fn();
 
-Object.defineProperty(window, "localStorage", {
+Object.defineProperty(window, 'localStorage', {
     value: {
         getItem: (...args: string[]) => mockGetItem(...args),
         setItem: (...args: string[]) => mockSetItem(...args),
@@ -29,17 +29,17 @@ describe('User API: Token Storage', () => {
         api.SaveToken(token);
         expect(mockSetItem).toHaveBeenCalledTimes(1);
         expect(mockSetItem).toHaveBeenCalledWith(SESSION_KEY, token);
-    })
+    });
 
     it('should restore token from localStorage', () => {
         api.RestoreToken();
         expect(mockGetItem).toHaveBeenCalledTimes(1);
         expect(mockGetItem).toHaveBeenCalledWith(SESSION_KEY);
-    })
+    });
 
     it('should clean token from localStorage', () => {
         api.CleanToken();
         expect(mockRemoveItem).toHaveBeenCalledTimes(1);
         expect(mockRemoveItem).toHaveBeenCalledWith(SESSION_KEY);
-    })
+    });
 });
