@@ -5,7 +5,7 @@ describe('Auth', () => {
     const password = 'admin'
 
     describe('when the user is authorized', () => {
-        it('Add new Item button should be available', () => {
+        it('Settings page with Save and Logout buttons should be visible', () => {
             cy.visit(settingsUrl)
             cy.contains('Login').click()
             cy.get('input').first().type(login)
@@ -13,11 +13,12 @@ describe('Auth', () => {
             cy.get('form button').click()
 
             cy.contains('Save', {timeout: 10000}).should('be.visible')
+            cy.contains('Logout').should('be.visible')
         })
     })
 
     describe('when the user uses wrong password', () => {
-        it('Add new Item button should be available', () => {
+        it('should show wrong message', () => {
             cy.visit(settingsUrl)
             cy.contains('Login').click()
             cy.get('input').first().type(login)
