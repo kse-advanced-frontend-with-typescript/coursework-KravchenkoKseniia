@@ -63,6 +63,32 @@ jobs:
         with:
           name: dist
           path: dist
+  test:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    needs: install-dependencies
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+
+      - name: Restore node modules cache
+        uses: actions/cache@v3
+        with:
+          key: ${{ runner.os }}-build-dependencies-${{ hashFiles('thequote/package-lock.json') }}
+          path: thequote/node_modules
+
+      - name: Run tests
+        working-directory: thequote
+        run: |
+          # if you have a CI script, e.g. "test:ci", use npm run test:ci
+          # otherwise this will invoke Jest and discover all __tests__ folders:
+          npm test -- --ci --reporters=default
+
   publish:
     needs: build
     if: github.ref == 'refs/heads/main'
