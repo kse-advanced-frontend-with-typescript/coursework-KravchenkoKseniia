@@ -48,6 +48,26 @@ describe('Auth', () => {
             cy.get('[class*="container"]', {timeout: 10000}).first().should('be.visible')
 
         })
+
+        it('should be possible to see saved quotes details', () => {
+            cy.visit(settingsUrl)
+            cy.contains('Login').click()
+            cy.get('input').first().type(login)
+            cy.get('input').last().type(password)
+            cy.get('form button').click()
+            cy.contains('Save', {timeout: 10000}).should('be.visible')
+
+            cy.visit(saveUrl)
+            cy.wait(3000)
+            cy.contains('SAVED QUOTES').should('be.visible')
+            cy.get('[class*="container"]', {timeout: 10000}).first().should('be.visible').click()
+
+            cy.contains('THE SAVED QUOTE').should('be.visible')
+            cy.contains('DELETE', {timeout: 10000}).should('be.visible')
+            cy.contains('BACK').should('be.visible')
+
+
+        })
     })
 
     describe('when the user uses wrong password', () => {
