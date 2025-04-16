@@ -88,21 +88,33 @@
             );
         }, []);
 
+        const contextValue = React.useMemo(() => ({
+            ...context,
+            setUser,
+            cleanUser,
+            setCurrentQuote,
+            setLastSavedQuote,
+            cleanCategories,
+            userAPI,
+            quoteAPI
+        }), [context]);
+
 
         return (
             <>
                 {userFetching ?
                 <Loader isLoading={userFetching} /> :
-                    <AppContext.Provider value={{
-                        ...context,
-                        setUser,
-                        cleanUser,
-                        setCurrentQuote,
-                        setLastSavedQuote,
-                        cleanCategories,
-                        userAPI,
-                        quoteAPI
-                    }}>
+                    <AppContext.Provider value={
+                        // ...context,
+                        // setUser,
+                        // cleanUser,
+                        // setCurrentQuote,
+                        // setLastSavedQuote,
+                        // cleanCategories,
+                        // userAPI,
+                        // quoteAPI
+                        contextValue
+                    }>
                         <div className={styles.app}>
                             <div className={styles.content}>
                                 <Routes>

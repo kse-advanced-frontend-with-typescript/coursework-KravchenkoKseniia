@@ -1,4 +1,4 @@
-﻿import React, {useContext, useEffect, useRef, useState} from 'react';
+﻿import React, {useContext, useRef, useState} from 'react';
 // import styles from './styles.module.css';
 import {AppContext} from '../../context';
 import {LoginForm} from '../../Components/LoginForm/LoginForm';
@@ -14,11 +14,11 @@ export const LoginPage: React.FC = () => {
     const [error, setError] = useState<string>();
     const [isProcessing, setIsProcessing] = useState<boolean>(false);
 
-    useEffect(() => {
-        if (context.user?.[0]._id) {
-            navigate('/settings');
-        }
-    }, [context.user, navigate]);
+    // useEffect(() => {
+    //     if (context.user?.[0]._id) {
+    //         navigate('/settings');
+    //     }
+    // }, [context.user, navigate]);
 
     const onLoginSubmit : React.FormEventHandler<HTMLFormElement> = async (e) => {
         setError('');
