@@ -90,6 +90,6 @@ jobs:
           npm test -- --ci --reporters=default
 
   publish:
-    needs: build
+    needs: test
     if: github.ref == 'refs/heads/main'
     uses: ./.github/workflows/github-pages.yml
