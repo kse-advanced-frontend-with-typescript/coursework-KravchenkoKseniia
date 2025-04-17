@@ -85,8 +85,6 @@ jobs:
       - name: Run tests
         working-directory: thequote
         run: |
-          # if you have a CI script, e.g. "test:ci", use npm run test:ci
-          # otherwise this will invoke Jest and discover all __tests__ folders:
           npm test -- --ci --reporters=default
 
   publish:
