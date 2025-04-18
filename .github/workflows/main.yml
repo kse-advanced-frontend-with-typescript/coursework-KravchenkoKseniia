@@ -39,6 +39,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: check-linter
+    env:
+      API_KEY: ${{ secrets.API_KEY }}
+      BASE_URL: /${{ github.event.repository.name }}
 
     steps:
       - uses: actions/checkout@v4
@@ -50,5 +53,41 @@ jobs:
         with:
           key: ${{ runner.os }}-build-dependencies-${{ hashFiles('thequote/package-lock.json') }}
           path: thequote/node_modules
-      - run: npm run build
+      - run: |
+          echo ${{ secrets.API_KEY }}
+          BASE_URL=/${{ github.event.repository.name }} API_KEY=${{ secrets.API_KEY }} npm run build
+          cp ./dist/index.html ./dist/404.html
         working-directory: thequote
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+  test:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+
+      - name: Restore node modules cache
+        uses: actions/cache@v3
+        with:
+          key: ${{ runner.os }}-build-dependencies-${{ hashFiles('thequote/package-lock.json') }}
+          path: thequote/node_modules
+
+      - name: Run tests
+        working-directory: thequote
+        run: |
+          npm test -- --ci --reporters=default
+
+  publish:
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/github-pages.yml

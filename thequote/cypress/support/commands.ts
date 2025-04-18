@@ -1,0 +1,1 @@
+﻿require('cypress-match-screenshot').register()

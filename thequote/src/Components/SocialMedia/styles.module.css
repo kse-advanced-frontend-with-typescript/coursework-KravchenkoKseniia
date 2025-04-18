@@ -1,0 +1,12 @@
+﻿.container{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 65px 80px;
+}
+
+svg{
+    /*margin: 0 10px;*/
+    cursor: pointer;
+}

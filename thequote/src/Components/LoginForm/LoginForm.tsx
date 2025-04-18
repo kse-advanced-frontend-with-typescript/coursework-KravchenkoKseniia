@@ -1,19 +1,29 @@
-﻿import React from 'react';
+﻿import React, {FormEventHandler} from 'react';
 import styles from './styles.module.css';
+import {Button} from '../Button/Button';
 
-export const LoginForm = () => {
+type LoginFormProps = {
+    onSub:  FormEventHandler<HTMLFormElement>;
+    isDis?: boolean;
+    loginRef: React.RefObject<HTMLInputElement>;
+    passwordRef: React.RefObject<HTMLInputElement>;
+};
+
+export const LoginForm: React.FC<LoginFormProps> = ({onSub, isDis, loginRef, passwordRef}) => {
     return (
         <div className={styles.container}>
-            <form className={styles.form}>
+            <form onSubmit={onSub} className={styles.form}>
                 <div className={styles.login}>
                     <label className={styles.label}>Username</label>
-                    <input type="text" className={styles.input} />
+                    <input type="text" className={styles.input} ref={loginRef} />
                 </div>
                 <div className={styles.password}>
                     <label className={styles.label}>Password</label>
-                    <input type="password" className={styles.input} />
+                    <input type="password" className={styles.input} ref={passwordRef} />
                 </div>
-                <button className={styles.btn}>Login</button>
+                <div className={styles.btnContainer}>
+                    <Button title={'Login'} type={'default'} isDisabled={isDis} />
+                </div>
             </form>
         </div>
     );

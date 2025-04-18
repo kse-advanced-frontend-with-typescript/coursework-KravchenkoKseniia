@@ -10,7 +10,8 @@
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --detectOpenHandles"
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --detectOpenHandles",
+    "cy": "cypress open"
   },
   "devDependencies": {
     "@babel/core": "^7.26.7",
@@ -30,6 +31,8 @@
     "@storybook/react": "^8.6.6",
     "@storybook/react-webpack5": "^8.6.6",
     "@storybook/test": "^8.6.6",
+    "@svgr/webpack": "^8.1.0",
+    "@types/axios": "^0.9.36",
     "@types/classnames": "^2.3.0",
     "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^8.23.0",
@@ -37,16 +40,21 @@
     "babel-loader": "^9.2.1",
     "cross-env": "^7.0.3",
     "css-loader": "^7.1.2",
+    "cypress": "^14.3.0",
+    "cypress-match-screenshot": "^1.1.0",
     "dotenv-webpack": "^8.1.0",
     "eslint": "^9.19.0",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-storybook": "^0.11.4",
+    "file-loader": "^6.2.0",
     "globals": "^15.14.0",
     "html-webpack-plugin": "^5.6.3",
     "husky": "^9.1.7",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "^15.4.3",
+    "node-fetch": "^3.3.2",
     "storybook": "^8.6.6",
     "style-loader": "^4.0.0",
     "ts-jest": "^29.2.6",
@@ -54,7 +62,8 @@
     "typescript-plugin-css-modules": "^5.1.0",
     "webpack": "^5.97.1",
     "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.0"
+    "webpack-dev-server": "^5.2.0",
+    "whatwg-fetch": "^3.6.20"
   },
   "engines": {
     "node": ">=18 <21"
@@ -64,11 +73,15 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@sinclair/typebox": "^0.34.31",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "dotenv": "^16.4.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-router": "^7.4.0",
+    "react-router-dom": "^6.30.0",
+    "react-share": "^5.2.2",
     "ts-loader": "^9.5.2"
   },
   "lint-staged": {
@@ -88,5 +101,9 @@
     "extends": [
       "plugin:storybook/recommended"
     ]
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFiles": ["whatwg-fetch"]
   }
 }

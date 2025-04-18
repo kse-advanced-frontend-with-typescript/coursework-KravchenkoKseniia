@@ -1,0 +1,11 @@
+.quoteContainer {
+    margin: 100px auto 0;
+}
+
+.container {
+    margin: 65px auto 35px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 90%;
+}

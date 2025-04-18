@@ -1,0 +1,15 @@
+﻿.quoteContainer {
+    margin: 100px auto 0;
+}
+
+.container {
+    margin: 65px auto 35px;
+    justify-content: center;
+    align-items: center;
+    /*display: flex;*/
+    width: 90%;
+}
+
+.container > button:not(:last-child) {
+    margin-bottom: 20px;
+}
